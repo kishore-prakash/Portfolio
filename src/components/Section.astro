@@ -1,0 +1,37 @@
+---
+interface Props {
+  id: string;
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  tint?: boolean;
+}
+const { id, eyebrow, title, lead, tint = false } = Astro.props;
+---
+
+<section
+  id={id}
+  class="scroll-mt-20 py-16 sm:py-20"
+  style={tint ? "background: var(--bg-subtle)" : undefined}
+  aria-labelledby={`${id}-heading`}
+>
+  <div class="container-page">
+    <header class="mb-10 max-w-2xl">
+      {
+        eyebrow && (
+          <p
+            class="mb-2 text-xs font-semibold uppercase tracking-[0.14em]"
+            style="color: var(--accent)"
+          >
+            {eyebrow}
+          </p>
+        )
+      }
+      <h2 id={`${id}-heading`} class="text-2xl font-semibold tracking-tight sm:text-3xl">
+        {title}
+      </h2>
+      {lead && <p class="mt-3 text-[15px] leading-relaxed" style="color: var(--text-muted)">{lead}</p>}
+    </header>
+    <slot />
+  </div>
+</section>

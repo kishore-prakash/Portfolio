@@ -1,0 +1,187 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import Section from "../components/Section.astro";
+import Timeline from "../components/Timeline.astro";
+import ProjectGrid from "../components/ProjectGrid.astro";
+import Footer from "../components/Footer.astro";
+import resume from "../data/resume.json";
+
+const { basics, skills, education, certifications, awards, languages } = resume;
+
+const title = `${basics.name} — ${basics.title}`;
+const description = basics.summaryShort;
+---
+
+<Base title={title} description={description}>
+  <Nav />
+
+  <main id="main">
+    <Hero />
+
+    <Section
+      id="about"
+      eyebrow="About"
+      title="What I do"
+      tint
+    >
+      <div class="grid gap-10 md:grid-cols-[1.4fr_1fr]">
+        <div class="space-y-4 text-[15px] leading-relaxed" style="color: var(--text-muted)">
+          <p>
+            I'm a mobile engineer and lead based in Bengaluru. Over the last eleven years I've
+            worked on both sides of the mobile stack — consumer and enterprise apps that reach
+            real users, and the SDKs that other engineering teams build on top of.
+          </p>
+          <p>
+            Today I'm at JLL on the Corrigo facilities-management suite, working across a
+            fifteen-person team on three iOS apps used in business-critical maintenance
+            workflows. Before that I led iOS at Jio Platforms, and spent four years building
+            NFC and secure-element SDKs for NXP and Bluetooth device SDKs for Jabra.
+          </p>
+          <p>
+            Outside work I ship my own apps. Stotramala is a multilingual library of over
+            seven thousand stotras; ThoughtCast and OmniSense are performance tools for
+            mentalists built on Bluetooth, NFC and on-device ML. I run those end to end —
+            code, releases, store listings and support.
+          </p>
+        </div>
+
+        <div class="space-y-8">
+          <div>
+            <h3 class="text-xs font-semibold uppercase tracking-[0.14em]" style="color: var(--text-faint)">
+              Focus areas
+            </h3>
+            <ul class="mt-3 flex flex-wrap gap-1.5">
+              {
+                resume.competencies.map((c) => (
+                  <li
+                    class="rounded-md px-2.5 py-1.5 text-[12.5px] font-medium"
+                    style="background: var(--bg-raised); border: 1px solid var(--border)"
+                  >
+                    {c}
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-xs font-semibold uppercase tracking-[0.14em]" style="color: var(--text-faint)">
+              Languages
+            </h3>
+            <ul class="mt-3 space-y-1 text-[14px]" style="color: var(--text-muted)">
+              {
+                languages.map((l) => (
+                  <li>
+                    <span class="font-medium" style="color: var(--text)">{l.name}</span>
+                    <span class="text-[13px]"> — {l.level}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </Section>
+
+    <Section
+      id="experience"
+      eyebrow="Experience"
+      title="Where I've worked"
+      lead="Eleven years across enterprise real estate, telecom, semiconductors and audio hardware."
+    >
+      <Timeline />
+    </Section>
+
+    <Section
+      id="projects"
+      eyebrow="Projects"
+      title="Things I've shipped"
+      lead="Apps and SDKs I've built or led, from public App Store releases to libraries partner teams integrate against."
+      tint
+    >
+      <ProjectGrid />
+    </Section>
+
+    <Section id="skills" eyebrow="Skills" title="Technical toolkit">
+      <dl class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          skills.map((group) => (
+            <div>
+              <dt class="text-xs font-semibold uppercase tracking-[0.14em]" style="color: var(--text-faint)">
+                {group.group}
+              </dt>
+              <dd class="mt-3 flex flex-wrap gap-1.5">
+                {group.items.map((item) => (
+                  <span
+                    class="rounded-md px-2.5 py-1.5 text-[12.5px] font-medium"
+                    style="background: var(--bg-subtle)"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </Section>
+
+    <Section id="education" eyebrow="Background" title="Education, certifications & awards" tint>
+      <div class="grid gap-10 sm:grid-cols-3">
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-[0.14em]" style="color: var(--text-faint)">
+            Education
+          </h3>
+          {
+            education.map((e) => (
+              <div class="mt-3">
+                <p class="text-[15px] font-semibold">{e.degree}</p>
+                <p class="mt-1 text-[13.5px]" style="color: var(--text-muted)">
+                  {e.school}
+                </p>
+                <p class="text-[13px]" style="color: var(--text-faint)">
+                  {e.affiliation}
+                </p>
+                <p class="mt-1 text-[13px] tabular-nums" style="color: var(--text-faint)">
+                  {e.start} – {e.end}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-[0.14em]" style="color: var(--text-faint)">
+            Certifications
+          </h3>
+          <ul class="mt-3 space-y-2 text-[14px]" style="color: var(--text-muted)">
+            {certifications.map((c) => <li>{c.name}</li>)}
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-[0.14em]" style="color: var(--text-faint)">
+            Awards
+          </h3>
+          <ul class="mt-3 space-y-2 text-[14px]" style="color: var(--text-muted)">
+            {
+              awards.map((a) => (
+                <li>
+                  {a.name}
+                  <span class="text-[13px]" style="color: var(--text-faint)">
+                    {" "}
+                    — {a.org}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </Section>
+  </main>
+
+  <Footer />
+</Base>

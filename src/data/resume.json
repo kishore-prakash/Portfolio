@@ -1,0 +1,853 @@
+{
+  "meta": {
+    "generated": "manual",
+    "note": "Single source of truth for both the website and the generated .docx/.pdf resume. Placeholders in [[double brackets]] are metrics awaiting confirmation from Kishore; nothing here is estimated or invented."
+  },
+  "basics": {
+    "name": "Kishore Prakash",
+    "title": "Mobile Engineering Lead",
+    "headline": "iOS & Cross-Platform Mobile Lead",
+    "tagline": "11+ years building and leading iOS, Kotlin Multiplatform and NFC/BLE work — from enterprise facilities platforms to shipped SDKs and my own App Store products.",
+    "location": "Bengaluru, Karnataka, India",
+    "email": "kishore.balasa@gmail.com",
+    "phone": "+91 89717 87176",
+    "website": "https://kishoreprakash.in",
+    "websiteLabel": "kishoreprakash.in",
+    "linkedin": "https://www.linkedin.com/in/kishorebalasa",
+    "linkedinLabel": "linkedin.com/in/kishorebalasa",
+    "github": "https://github.com/kishore-prakash",
+    "githubLabel": "github.com/kishore-prakash",
+    "stackoverflow": "https://stackoverflow.com/users/4215161",
+    "stotramaala": "https://stotramaala.app",
+    "photo": "/img/kishore.jpg",
+    "summary": "Mobile engineering lead with 11+ years designing, building and shipping iOS applications and SDKs across enterprise, telecom and semiconductor products. Currently at JLL on the Corrigo facilities-management suite, working across a 15-person mobile team. Track record of owning mobile architecture end to end — from app and SDK design through CI/CD, release and App Store delivery — and of leading small teams through it. Deep specialisation in Apple platforms plus NFC and Bluetooth Low Energy, with published SDKs used by NXP and Jabra partner teams and eight independently shipped App Store products.",
+    "summaryShort": "Mobile engineering lead with 11+ years shipping iOS apps and SDKs across enterprise, telecom and semiconductor products. Owns architecture, CI/CD and App Store delivery end to end; specialises in Apple platforms, NFC and Bluetooth Low Energy."
+  },
+  "competencies": [
+    "Mobile Architecture & Technical Ownership",
+    "iOS / Swift & SwiftUI",
+    "Kotlin Multiplatform (KMP)",
+    "SDK & Framework Design",
+    "NFC & Bluetooth Low Energy",
+    "CI/CD & Release Engineering",
+    "Team Leadership & Mentoring",
+    "Cross-Functional Stakeholder Management",
+    "App Store & Enterprise Distribution",
+    "Performance Optimisation"
+  ],
+  "experience": [
+    {
+      "company": "JLL (Jones Lang LaSalle)",
+      "location": "Bengaluru, India",
+      "context": "Global commercial real-estate services firm. Corrigo is JLL's facilities-management and CMMS product suite.",
+      "roles": [
+        {
+          "title": "Senior Software Engineer",
+          "start": "Nov 2023",
+          "end": "Present",
+          "current": true,
+          "bullets": [
+            "Design and build enterprise-grade iOS applications across JLL's Corrigo facilities-management suite — Corrigo, Corrigo Enterprise and CorrigoPro — used in business-critical maintenance workflows and shipped in 19 languages.",
+            "Own mobile architecture decisions for a 15-engineer cross-platform team spanning Swift, Objective-C and Kotlin, keeping the codebase modular as feature scope grows.",
+            "Deliver QR- and NFC-driven service-request flows so occupants and technicians can raise and action work orders by scanning an asset tag rather than filling in a form.",
+            "Drive app performance work across launch, sync and list rendering, [[reducing X to Y — confirm what you measured]].",
+            "Maintain GitHub Actions CI/CD for the mobile estate, [[cutting build/release time from X to Y]], and keep XCTest coverage moving with each release.",
+            "Partner with product managers, designers and backend teams to scope and land features, and review code across the team to hold a consistent bar."
+          ]
+        }
+      ]
+    },
+    {
+      "company": "Jio Platforms Limited (JPL)",
+      "location": "Bengaluru, India",
+      "context": "Reliance Jio's digital-platforms arm; consumer apps at national scale.",
+      "roles": [
+        {
+          "title": "Lead iOS Engineer",
+          "start": "Oct 2022",
+          "end": "Nov 2023",
+          "bullets": [
+            "Led iOS development for JioAICloud (Storage & Photos) from version 58.0.0, a consumer cloud-storage app for photos, video, documents and contacts, working with a team of 6.",
+            "Architected and shipped Platfom, a short-video product, from scratch — owned the app architecture, guided the team through delivery and proposed the feature roadmap.",
+            "Drove an app-size reduction programme on JioAICloud, [[X MB to Y MB]], to improve install and update conversion on low-bandwidth connections.",
+            "Designed scalable architecture for high-traffic mobile products and mentored engineers on it, raising the team's baseline on modularity and testing.",
+            "Maintained Jenkins CI/CD pipelines and XCTest suites, and represented iOS in planning with product, design and backend stakeholders."
+          ]
+        }
+      ]
+    },
+    {
+      "company": "CGI",
+      "location": "Bengaluru, India",
+      "context": "Global IT services firm; engagement delivered NFC and secure-element products for NXP Semiconductors.",
+      "roles": [
+        {
+          "title": "Lead Analyst",
+          "start": "Jun 2021",
+          "end": "Oct 2022",
+          "bullets": [
+            "Led iOS SDK engineering for NXP's MIFARE 2GO — a cloud service that turns a phone into a contactless transit ticket and access credential using a certified secure element.",
+            "Owned the full SDK lifecycle: public API design, card-provisioning and payment flows, XCTest suites, a reference demo app, and AsciiDoc/DocC integration documentation for partner developers.",
+            "Ran Jenkins CI/CD producing multi-platform library builds, and worked directly with NXP's core team on card structures and secure-element behaviour.",
+            "Integrated backend services and REST APIs behind enterprise mobile workflows, and improved app stability and performance release over release."
+          ]
+        },
+        {
+          "title": "Senior Software Engineer",
+          "start": "Feb 2019",
+          "end": "May 2021",
+          "bullets": [
+            "Built mWallet2GO, an iOS SDK for contactless Mastercard and VISA payments through the secure element on phones and wearables, with Cucumber and XCTest coverage on Bamboo CI.",
+            "Developed TapLinx, a Swift/Objective-C/C++ iOS library for reading and writing NFC data across NFC Forum tag types, and consumed it in NXP's own shipping apps.",
+            "Shipped and maintained NXP's public NFC apps — TagInfo (reads NFC Forum Type 2/4/5 tags including NTAG, ICODE and MIFARE), TagWriter (writes contacts, geo, Wi-Fi, SMS and handover records to tags) and AppXplorer (smart-city services over NFC).",
+            "Wrote the developer-facing SDK documentation and release notes that partner integrators worked from."
+          ]
+        }
+      ]
+    },
+    {
+      "company": "Mindtree",
+      "location": "Bengaluru, India",
+      "context": "IT services firm; engagement delivered macOS and iOS SDKs and plugins for Jabra (GN Audio).",
+      "roles": [
+        {
+          "title": "Senior Software Engineer",
+          "start": "Apr 2017",
+          "end": "Feb 2019",
+          "bullets": [
+            "Built the Jabra Universal SDK for macOS and iOS — one library for device settings, call control and firmware update across Jabra's Bluetooth headset range — plus the demo app partners integrate against.",
+            "Implemented Bluetooth Low Energy communication for device pairing, firmware interaction and real-time headset status, and improved connection stability across the device matrix.",
+            "Developed the macOS Jabra Softphone plugins bridging Skype, Bria and Avaya to Jabra hardware for remote call control, with Doxygen documentation and Jenkins CI.",
+            "Worked directly with hardware and firmware teams to lock down reliable device communication, and prepared the user manuals and release documents shipped to integrators.",
+            "Delivered an enterprise iOS app for American Red Cross employees with Microsoft Enterprise SSO, distributed through enterprise channels."
+          ]
+        }
+      ]
+    },
+    {
+      "company": "IDS NEXT Business Solutions Pvt Ltd",
+      "location": "Bengaluru, India",
+      "context": "Hospitality ERP vendor.",
+      "roles": [
+        {
+          "title": "iOS Developer",
+          "start": "Sep 2016",
+          "end": "Apr 2017",
+          "bullets": [
+            "Built Stay Ahead, a universal iPhone/iPad app for guests of IDS-network hotels to hold rooms, order room service and view live folio billing.",
+            "Developed Pulze247, a universal app giving hotel owners and general managers real-time property statistics and business-critical KPIs as graphs.",
+            "Defined app flow and UI alongside the design team, and coordinated delivery with the backend team."
+          ]
+        }
+      ]
+    },
+    {
+      "company": "Cosmonet Solutions",
+      "location": "Bengaluru, India",
+      "context": "Product engineering studio serving APAC clients.",
+      "roles": [
+        {
+          "title": "Software Engineer",
+          "start": "Oct 2014",
+          "end": "Aug 2016",
+          "bullets": [
+            "Built Spizza, an iOS ordering app for a Singapore pizza chain — menu and combo ordering, payment gateway, reservations and outlet maps.",
+            "Developed Personal Carpool, a universal iPhone/iPad carpooling app for drivers and riders to publish and manage rides.",
+            "Owned app flow definition and task assignment for a two-engineer team, and interfaced with backend and UI/UX."
+          ]
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "slug": "corrigo",
+      "name": "Corrigo",
+      "org": "JLL",
+      "category": "enterprise",
+      "featured": true,
+      "years": "2023 – present",
+      "blurb": "Occupant-facing facilities app. Raise a maintenance request by scanning a QR code or tapping an NFC tag on the equipment itself, then track status, review proposals and verify completed work.",
+      "highlights": [
+        "QR/NFC scan-to-request in seconds",
+        "Work-order status tracking and proposal review",
+        "Standard and urgent messaging"
+      ],
+      "tech": [
+        "Swift",
+        "Kotlin",
+        "Objective-C",
+        "NFC",
+        "GitHub Actions",
+        "XCTest"
+      ],
+      "teamSize": 15,
+      "role": [
+        "New feature development",
+        "App performance optimisation",
+        "CI/CD ownership"
+      ],
+      "link": "https://apps.apple.com/in/app/corrigo/id1244213800",
+      "appId": "1244213800"
+    },
+    {
+      "slug": "corrigo-enterprise",
+      "name": "Corrigo Enterprise",
+      "org": "JLL",
+      "category": "enterprise",
+      "featured": true,
+      "years": "2023 – present",
+      "blurb": "CMMS for facilities teams — work-order automation, asset tracking and preventative-maintenance scheduling, kept in sync with the desktop platform. Ships on iPhone, iPad and visionOS in 19 languages.",
+      "highlights": [
+        "Work-order creation, assignment and escalation",
+        "Asset history and preventative-maintenance scheduling",
+        "NFC and QR scanning from asset and work-order screens",
+        "Dark mode and dashboard widgets"
+      ],
+      "tech": [
+        "Swift",
+        "Objective-C",
+        "NFC",
+        "GitHub Actions",
+        "XCTest"
+      ],
+      "teamSize": 15,
+      "role": [
+        "Feature development",
+        "Mobile architecture",
+        "Release engineering"
+      ],
+      "link": "https://apps.apple.com/in/app/corrigo-enterprise/id1057410388",
+      "appId": "1057410388"
+    },
+    {
+      "slug": "corrigopro",
+      "name": "CorrigoPro",
+      "org": "JLL",
+      "category": "enterprise",
+      "featured": true,
+      "years": "2023 – present",
+      "blurb": "The service-provider side of Corrigo. Technicians receive requests, post real-time updates and document work with photos — with geofencing that checks them in and out automatically as they arrive at and leave a site.",
+      "highlights": [
+        "Geofenced automatic check-in / check-out",
+        "Photo and text work documentation",
+        "Centralised customer communication"
+      ],
+      "tech": [
+        "Swift",
+        "Core Location",
+        "GitHub Actions",
+        "XCTest"
+      ],
+      "teamSize": 15,
+      "role": [
+        "Feature development",
+        "Location and geofencing work",
+        "CI/CD"
+      ],
+      "link": "https://apps.apple.com/in/app/corrigopro/id995080706",
+      "appId": "995080706"
+    },
+    {
+      "slug": "jioaicloud",
+      "name": "JioAICloud — Storage & Photos",
+      "org": "Jio Platforms",
+      "category": "enterprise",
+      "featured": true,
+      "years": "2022 – 2023",
+      "blurb": "Consumer cloud storage for photos, video, documents, music and contacts — automatic backup, cross-device access and shared collaboration on trips, events and projects.",
+      "highlights": [
+        "Automatic and manual backup to JioCloud",
+        "Access from any phone or PC",
+        "Shared albums and collaboration"
+      ],
+      "tech": [
+        "Swift",
+        "Objective-C",
+        "Jenkins",
+        "XCTest"
+      ],
+      "teamSize": 6,
+      "role": [
+        "Feature development from v58.0.0",
+        "App size reduction",
+        "CI/CD ownership"
+      ],
+      "link": "https://apps.apple.com/in/app/jioaicloud-storage-photos/id1001974993",
+      "appId": "1001974993"
+    },
+    {
+      "slug": "platfom",
+      "name": "Platfom — Short Video App",
+      "org": "Jio Platforms",
+      "category": "enterprise",
+      "featured": true,
+      "years": "2022 – 2023",
+      "blurb": "Short-video product built from scratch — create and publish short videos as stories. I owned the architecture and led the team through delivery.",
+      "highlights": [
+        "Built from zero to App Store",
+        "Architecture owned end to end",
+        "Feature roadmap proposed and driven"
+      ],
+      "tech": [
+        "Swift",
+        "Objective-C",
+        "AVFoundation"
+      ],
+      "teamSize": 6,
+      "role": [
+        "App architecture",
+        "Team guidance",
+        "Stakeholder communication",
+        "Development from scratch"
+      ],
+      "delisted": true
+    },
+    {
+      "slug": "mifare-2go",
+      "name": "MIFARE 2GO",
+      "org": "NXP Semiconductors (via CGI)",
+      "category": "sdk",
+      "featured": true,
+      "years": "2021 – 2022",
+      "blurb": "iOS SDK for NXP's cloud service that turns a phone into a contactless transit ticket. Digital credentials live in an EAL 5+ certified secure element and extend beyond transit into access control and loyalty.",
+      "highlights": [
+        "Card provisioning and contactless payment APIs",
+        "Reference demo app for integrators",
+        "AsciiDoc and DocC integration documentation"
+      ],
+      "tech": [
+        "Swift",
+        "NFC",
+        "Secure Element",
+        "Jenkins",
+        "XCTest",
+        "AsciiDoc",
+        "DocC"
+      ],
+      "teamSize": 2,
+      "role": [
+        "iOS library development",
+        "Unit testing",
+        "Demo app",
+        "CI/CD",
+        "SDK documentation"
+      ],
+      "link": "https://www.nxp.com/products/rfid-nfc/mifare-hf/mifare-2go:MIFARE-2GO"
+    },
+    {
+      "slug": "mwallet2go",
+      "name": "mWallet2GO",
+      "org": "NXP Semiconductors (via CGI)",
+      "category": "sdk",
+      "years": "2019 – 2021",
+      "blurb": "iOS SDK for contactless Mastercard and VISA payments through the secure-element chip inside a phone or wearable.",
+      "tech": [
+        "Swift",
+        "Secure Element",
+        "Bamboo",
+        "XCTest",
+        "Cucumber"
+      ],
+      "teamSize": 2,
+      "role": [
+        "iOS library development",
+        "Unit and BDD testing",
+        "Demo app",
+        "CI/CD",
+        "SDK documentation"
+      ],
+      "link": "https://www.nxp.com/"
+    },
+    {
+      "slug": "taplinx",
+      "name": "TapLinx",
+      "org": "NXP Semiconductors (via CGI)",
+      "category": "sdk",
+      "years": "2019 – 2021",
+      "blurb": "iOS library for reading and writing NFC data across NFC Forum tag types. Consumed internally by TagInfo, TagWriter and AppXplorer.",
+      "tech": [
+        "Swift",
+        "Objective-C",
+        "C++",
+        "NFC",
+        "Bamboo"
+      ],
+      "teamSize": 3,
+      "role": [
+        "iOS library development",
+        "Multi-platform build pipeline",
+        "Core-team collaboration on card structures"
+      ],
+      "link": "https://www.nxp.com/products/rfid-nfc/nfc-hf/nfc-reader-libraries:NFC-READER-LIBRARY"
+    },
+    {
+      "slug": "taginfo",
+      "name": "NFC TagInfo by NXP",
+      "org": "NXP Semiconductors (via CGI)",
+      "category": "nfc",
+      "featured": true,
+      "years": "2019 – 2021",
+      "blurb": "Reads NFC Forum Type 2, Type 4 and Type 5 tags — including NXP's NTAG, ICODE and MIFARE platforms — and auto-executes the NDEF payload: open a URL, join Wi-Fi, import a vCard, drop a map pin, place a call.",
+      "tech": [
+        "Swift",
+        "Objective-C",
+        "NFC",
+        "Bamboo"
+      ],
+      "teamSize": 2,
+      "role": [
+        "App development",
+        "CI/CD",
+        "Core-team collaboration on card structures"
+      ],
+      "link": "https://apps.apple.com/us/app/nfc-taginfo-by-nxp/id1246143596",
+      "appId": "1246143596",
+      "image": "/img/tag_info.png"
+    },
+    {
+      "slug": "tagwriter",
+      "name": "NFC TagWriter by NXP",
+      "org": "NXP Semiconductors (via CGI)",
+      "category": "nfc",
+      "years": "2019 – 2021",
+      "blurb": "Writes contacts, bookmarks, geo locations, Bluetooth handover, SMS and mail records to NFC tags — posters, business cards, anything with an NFC inlay — then reads back and launches apps from what it finds.",
+      "tech": [
+        "Swift",
+        "Objective-C",
+        "NFC",
+        "Bamboo"
+      ],
+      "teamSize": 2,
+      "role": [
+        "App development",
+        "CI/CD",
+        "Core-team collaboration on card structures"
+      ],
+      "link": "https://apps.apple.com/us/app/nfc-tagwriter-by-nxp/id1246143221",
+      "appId": "1246143221",
+      "image": "/img/tag_writer.png"
+    },
+    {
+      "slug": "appxplorer",
+      "name": "AppXplorer",
+      "org": "NXP Semiconductors (via CGI)",
+      "category": "nfc",
+      "years": "2019 – 2021",
+      "blurb": "Discover smart-city services around you, then load and manage credentials over the air on an NFC device — event and hotel-room access, transport and bike rental.",
+      "tech": [
+        "Swift",
+        "Objective-C",
+        "NFC",
+        "Bamboo"
+      ],
+      "teamSize": 2,
+      "role": [
+        "App development",
+        "CI/CD",
+        "Core-team collaboration on card structures"
+      ],
+      "image": "/img/appxplorer.png",
+      "delisted": true
+    },
+    {
+      "slug": "jabra-universal-sdk",
+      "name": "Jabra Universal macOS & iOS SDK",
+      "org": "Jabra (via Mindtree)",
+      "category": "sdk",
+      "featured": true,
+      "years": "2017 – 2019",
+      "blurb": "One SDK across macOS and iOS for talking to Jabra headsets — device settings, call control and firmware update — shipped with a demo app showing integrators how to use it.",
+      "tech": [
+        "Swift",
+        "Bluetooth LE",
+        "Jenkins",
+        "XCTest"
+      ],
+      "teamSize": 2,
+      "role": [
+        "SDK development",
+        "Unit testing",
+        "User manuals and release docs",
+        "Client feature planning"
+      ],
+      "link": "https://developer.jabra.com/",
+      "image": "/img/jabra_ios.png"
+    },
+    {
+      "slug": "jabra-ios-sdk",
+      "name": "Jabra iOS SDK",
+      "org": "Jabra (via Mindtree)",
+      "category": "sdk",
+      "years": "2017 – 2019",
+      "blurb": "iOS framework for communicating with Jabra Bluetooth devices — settings and firmware update — plus the reference demo app.",
+      "tech": [
+        "Swift",
+        "Bluetooth LE",
+        "Jenkins",
+        "XCTest"
+      ],
+      "teamSize": 2,
+      "role": [
+        "Framework development",
+        "Unit testing",
+        "Documentation",
+        "Client communication"
+      ],
+      "link": "https://developer.jabra.com/"
+    },
+    {
+      "slug": "jabra-softphone-plugins",
+      "name": "Jabra Softphone Plugins for macOS",
+      "org": "Jabra (via Mindtree)",
+      "category": "sdk",
+      "years": "2017 – 2019",
+      "blurb": "macOS background service bridging softphones — Skype, Bria, Avaya — to Jabra hardware for remote call control.",
+      "tech": [
+        "Swift",
+        "macOS",
+        "Jenkins",
+        "XCTest",
+        "Doxygen"
+      ],
+      "teamSize": 1,
+      "role": [
+        "Skype plugin development",
+        "CI maintenance",
+        "Unit testing",
+        "Bria and Avaya features",
+        "Release documents"
+      ],
+      "link": "https://www.jabra.com/software-and-services/jabra-direct",
+      "image": "/img/jabra_direct.jpg"
+    },
+    {
+      "slug": "red-cross",
+      "name": "American Red Cross Employee App",
+      "category": "enterprise",
+      "years": "2017 – 2019",
+      "blurb": "Enterprise iOS app giving American Red Cross employees a single entry point to their internal applications, behind Microsoft Enterprise SSO.",
+      "tech": [
+        "Swift",
+        "Microsoft Enterprise SSO"
+      ],
+      "teamSize": 1,
+      "role": [
+        "App development",
+        "Enterprise distribution"
+      ],
+      "image": "/img/american_red_cross.png"
+    },
+    {
+      "slug": "stotramala",
+      "name": "Stotramala (Multilingual)",
+      "org": "Independent",
+      "category": "personal",
+      "featured": true,
+      "years": "2020 – present",
+      "blurb": "My own App Store product: a multilingual reference library of over 7,000 Hindu stotras, ashtottaras and vedamantras. I run the whole thing — development, content pipeline, releases, ads and support.",
+      "highlights": [
+        "7,000+ stotras, ashtottaras and vedamantras",
+        "Multilingual script support",
+        "YouTube integration and Google Ads monetisation",
+        "Universal links via stotramaala.app"
+      ],
+      "tech": [
+        "Swift",
+        "YouTube API",
+        "Google Mobile Ads",
+        "Universal Links"
+      ],
+      "teamSize": 1,
+      "role": [
+        "Sole developer",
+        "Full development and production lifecycle"
+      ],
+      "link": "https://apps.apple.com/in/app/stotramala-multilingual/id1523220364",
+      "appId": "1523220364",
+      "site": "https://stotramaala.app"
+    },
+    {
+      "slug": "thoughtcast",
+      "name": "ThoughtCast",
+      "org": "Independent",
+      "category": "personal",
+      "featured": true,
+      "years": "2017 – present",
+      "blurb": "A performance tool for mentalists: the performer sees what a spectator is writing or drawing, live, as it happens. Bluetooth pen link plus on-device handwriting recognition.",
+      "tech": [
+        "Swift",
+        "Bluetooth LE",
+        "Google ML Kit"
+      ],
+      "teamSize": 1,
+      "role": [
+        "Sole developer",
+        "Full development and production lifecycle"
+      ],
+      "link": "https://apps.apple.com/us/app/thoughtcast/id1311918486",
+      "appId": "1311918486"
+    },
+    {
+      "slug": "omnisense",
+      "name": "OmniSense — Magic & Mindreading",
+      "org": "Independent",
+      "category": "personal",
+      "years": "2019 – present",
+      "blurb": "Reveals which card, coin or object a spectator picked, using NFC tags read by the iPhone — with a companion Apple Watch app so the performer never touches their phone.",
+      "tech": [
+        "Swift",
+        "NFC",
+        "watchOS"
+      ],
+      "teamSize": 1,
+      "role": [
+        "Sole developer",
+        "iPhone and Apple Watch apps",
+        "Full production lifecycle"
+      ],
+      "link": "https://apps.apple.com/us/app/omnisense-magic-mindreading/id1475017007",
+      "appId": "1475017007"
+    },
+    {
+      "slug": "stay-ahead",
+      "name": "Stay Ahead",
+      "org": "IDS NEXT",
+      "category": "enterprise",
+      "years": "2016 – 2017",
+      "blurb": "Universal iPhone/iPad app for guests of IDS-network hotels — hold rooms, order room service and watch the folio bill update in real time.",
+      "tech": [
+        "Swift"
+      ],
+      "teamSize": 2,
+      "role": [
+        "iOS development",
+        "Task assignment",
+        "App flow and UI design",
+        "Backend and UX coordination"
+      ],
+      "image": "/img/stay_ahead.png",
+      "delisted": true
+    },
+    {
+      "slug": "pulze247",
+      "name": "Pulze247",
+      "org": "IDS NEXT",
+      "category": "enterprise",
+      "years": "2016 – 2017",
+      "blurb": "Real-time property dashboard for hotel owners and general managers — the vital, business-critical numbers as live graphs on their phone.",
+      "tech": [
+        "Swift"
+      ],
+      "teamSize": 2,
+      "role": [
+        "iOS development",
+        "Task assignment",
+        "App flow",
+        "Backend and UX coordination"
+      ],
+      "link": "https://apps.apple.com/us/app/pulze247/id1035543880",
+      "appId": "1035543880",
+      "image": "/img/pulse247.png"
+    },
+    {
+      "slug": "spizza",
+      "name": "Spizza",
+      "org": "Cosmonet Solutions",
+      "category": "enterprise",
+      "years": "2014 – 2016",
+      "blurb": "Ordering app for a Singapore pizza chain — menu and combo ordering, payment gateway, table reservations and outlet maps.",
+      "tech": [
+        "Swift",
+        "Payment Gateway"
+      ],
+      "teamSize": 2,
+      "role": [
+        "iOS development",
+        "Task assignment",
+        "App flow",
+        "Backend and UX coordination"
+      ],
+      "link": "https://apps.apple.com/sg/app/spizza/id603030085",
+      "appId": "603030085",
+      "image": "/img/spizza.png"
+    },
+    {
+      "slug": "personal-carpool",
+      "name": "Personal Carpool",
+      "org": "Cosmonet Solutions",
+      "category": "enterprise",
+      "years": "2014 – 2016",
+      "blurb": "Universal iPhone/iPad carpooling app letting drivers and riders publish, match and manage rides.",
+      "tech": [
+        "Swift"
+      ],
+      "teamSize": 2,
+      "role": [
+        "iOS development",
+        "Task assignment",
+        "Backend and UX coordination"
+      ],
+      "image": "/img/personal_carpool.png",
+      "delisted": true
+    }
+  ],
+  "skills": [
+    {
+      "group": "Languages",
+      "items": [
+        "Swift",
+        "Objective-C",
+        "Kotlin",
+        "C++",
+        "Python",
+        "Bash"
+      ]
+    },
+    {
+      "group": "Apple Platforms",
+      "items": [
+        "iOS",
+        "iPadOS",
+        "macOS",
+        "watchOS",
+        "visionOS",
+        "SwiftUI",
+        "UIKit",
+        "AVFoundation",
+        "Core Location"
+      ]
+    },
+    {
+      "group": "Cross-Platform",
+      "items": [
+        "Kotlin Multiplatform (KMP)",
+        "Android"
+      ]
+    },
+    {
+      "group": "Connectivity",
+      "items": [
+        "NFC",
+        "Bluetooth Low Energy",
+        "Secure Element",
+        "Universal Links",
+        "Push Notifications"
+      ]
+    },
+    {
+      "group": "Architecture & APIs",
+      "items": [
+        "Mobile architecture",
+        "SDK & framework design",
+        "Swift Package Manager",
+        "CocoaPods",
+        "REST",
+        "JSON"
+      ]
+    },
+    {
+      "group": "CI/CD",
+      "items": [
+        "GitHub Actions",
+        "Jenkins",
+        "Bamboo",
+        "Travis CI",
+        "Fastlane-style release automation"
+      ]
+    },
+    {
+      "group": "Testing",
+      "items": [
+        "XCTest",
+        "XCUITest",
+        "Cucumber (BDD)"
+      ]
+    },
+    {
+      "group": "Data",
+      "items": [
+        "SQLite",
+        "Core Data",
+        "Realm",
+        "Plist",
+        "MySQL",
+        "MongoDB"
+      ]
+    },
+    {
+      "group": "Documentation",
+      "items": [
+        "DocC",
+        "AsciiDoc",
+        "Doxygen"
+      ]
+    },
+    {
+      "group": "Tooling",
+      "items": [
+        "Xcode",
+        "Git (GitHub, Bitbucket, GitLab)",
+        "SVN",
+        "Google Mobile Ads"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Engineering (BE), Computer Science",
+      "school": "Impact College of Engineering and Applied Sciences, Bengaluru",
+      "affiliation": "Visvesvaraya Technological University",
+      "start": "2010",
+      "end": "2014"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "DevOps Practitioner"
+    },
+    {
+      "name": "AMCAT Certified Software Development Trainee"
+    }
+  ],
+  "awards": [
+    {
+      "name": "Spot On Award (×2)",
+      "org": "Mindtree"
+    },
+    {
+      "name": "Employee of the Month",
+      "org": "Cosmonet Solutions"
+    },
+    {
+      "name": "IBM Hackathon",
+      "org": "IBM"
+    },
+    {
+      "name": "Hitachi Programmers Marathon",
+      "org": "Hitachi"
+    },
+    {
+      "name": "WeChat Internship Programme",
+      "org": "WeChat"
+    }
+  ],
+  "languages": [
+    {
+      "name": "Kannada",
+      "level": "Native or bilingual"
+    },
+    {
+      "name": "Telugu",
+      "level": "Native or bilingual"
+    },
+    {
+      "name": "English",
+      "level": "Professional working"
+    },
+    {
+      "name": "Hindi",
+      "level": "Limited working"
+    }
+  ]
+}

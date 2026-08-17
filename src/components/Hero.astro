@@ -1,0 +1,85 @@
+---
+import resume from "../data/resume.json";
+const { basics } = resume;
+
+const appCount = resume.projects.filter((p) => "appId" in p).length;
+const stats = [
+  { value: "11+", label: "years in mobile" },
+  { value: String(appCount), label: "live App Store apps" },
+  { value: "15", label: "engineer team at JLL" },
+];
+---
+
+<section id="top" class="scroll-mt-20 pt-14 pb-16 sm:pt-20 sm:pb-20">
+  <div class="container-page">
+    <div class="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-14">
+      <div>
+        <p class="mb-3 text-sm font-medium" style="color: var(--accent)">
+          {basics.headline}
+        </p>
+        <h1 class="text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl">
+          {basics.name}
+        </h1>
+        <p class="mt-5 max-w-xl text-base leading-relaxed sm:text-lg" style="color: var(--text-muted)">
+          {basics.tagline}
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            href="/Kishore-Prakash-Resume.pdf"
+            class="inline-flex min-h-11 items-center gap-2 rounded-lg px-5 text-sm font-semibold transition-opacity hover:opacity-90"
+            style="background: var(--accent); color: var(--accent-on)"
+          >
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+            Download résumé
+          </a>
+          <a
+            href="/Kishore-Prakash-Resume.docx"
+            class="inline-flex min-h-11 items-center rounded-lg border px-5 text-sm font-semibold transition-colors hover:bg-[var(--bg-subtle)]"
+            style="border-color: var(--border-strong)"
+          >
+            .docx version
+          </a>
+          <a
+            href={`mailto:${basics.email}`}
+            class="inline-flex min-h-11 items-center rounded-lg border px-5 text-sm font-semibold transition-colors hover:bg-[var(--bg-subtle)]"
+            style="border-color: var(--border-strong)"
+          >
+            Get in touch
+          </a>
+        </div>
+
+        <dl class="mt-10 flex flex-wrap gap-x-10 gap-y-4">
+          {
+            stats.map((s) => (
+              <div>
+                <dt class="sr-only">{s.label}</dt>
+                <dd>
+                  <span class="block text-2xl font-semibold tabular-nums">{s.value}</span>
+                  <span class="text-[13px]" style="color: var(--text-faint)">
+                    {s.label}
+                  </span>
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+
+      <div class="order-first md:order-last">
+        <img
+          src={basics.photo}
+          width="220"
+          height="220"
+          alt=""
+          decoding="async"
+          fetchpriority="high"
+          class="h-32 w-32 rounded-2xl object-cover sm:h-44 sm:w-44 md:h-56 md:w-56"
+          style="border: 1px solid var(--border)"
+        />
+      </div>
+    </div>
+  </div>
+</section>

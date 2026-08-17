@@ -1,0 +1,25 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Base title="Page not found — Kishore Prakash" description="That page doesn't exist.">
+  <Nav />
+  <main id="main" class="container-page flex min-h-[60vh] flex-col justify-center py-20">
+    <p class="text-sm font-semibold" style="color: var(--accent)">404</p>
+    <h1 class="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Page not found</h1>
+    <p class="mt-4 max-w-md text-[15px] leading-relaxed" style="color: var(--text-muted)">
+      That link doesn't point anywhere. The portfolio moved to the site root, so an
+      old bookmark may have brought you here.
+    </p>
+    <a
+      href="/"
+      class="mt-8 inline-flex min-h-11 w-fit items-center rounded-lg px-5 text-sm font-semibold"
+      style="background: var(--accent); color: var(--accent-on)"
+    >
+      Back to the homepage
+    </a>
+  </main>
+  <Footer />
+</Base>
