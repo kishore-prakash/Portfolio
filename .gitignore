@@ -28,3 +28,6 @@ pnpm-debug.log*
 
 # python
 __pycache__/
+
+# claude — local overrides only; shared config is committed
+.claude/settings.local.json
