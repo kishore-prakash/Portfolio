@@ -47,12 +47,13 @@
           "end": "Present",
           "current": true,
           "bullets": [
-            "Build enterprise iOS apps across JLL's Corrigo facilities suite — Corrigo, Corrigo Enterprise and CorrigoPro — shipped in 19 languages.",
+            "Build and ship iOS apps across JLL's Corrigo facilities suite — Corrigo, Corrigo Enterprise and CorrigoPro — in 19 languages, including QR- and NFC-driven service requests.",
             "Own mobile architecture decisions for a 15-engineer team working across Swift, Objective-C and Kotlin.",
-            "Deliver QR- and NFC-driven service requests so occupants and technicians raise work orders by scanning an asset tag.",
-            "Drive performance work across app launch, sync and list rendering, [[reducing X to Y]].",
-            "Maintain GitHub Actions CI/CD for the mobile estate, [[cutting release time from X to Y]], and grow XCTest coverage each release.",
-            "Partner with product, design and backend to scope features, and review code across the team."
+            "Led the CocoaPods to Swift Package Manager migration, delivered ahead of schedule, and wrote the migration guide other teams adopted.",
+            "Led the Datadog integration on iOS, improving observability and diagnostics across the mobile estate.",
+            "Cut login time by roughly 50% and screen load times by up to 80% across the Corrigo apps.",
+            "Cut CI/CD build and release time by 30% on GitHub Actions, and grew XCTest coverage each release.",
+            "Standardised localisation and font accessibility across the suite."
           ]
         }
       ]
@@ -69,7 +70,7 @@
           "bullets": [
             "Led iOS for JioAICloud (Storage & Photos) from v58.0.0 with a team of 6.",
             "Architected and shipped Platfom, a short-video product, from scratch — owned architecture and the feature roadmap.",
-            "Drove an app-size reduction programme on JioAICloud, [[X MB to Y MB]], improving install conversion on low-bandwidth connections.",
+            "Drove an app-size reduction programme on JioAICloud, cutting the binary by 25% to improve install conversion on low-bandwidth connections.",
             "Designed scalable architecture for high-traffic products and mentored engineers on modularity and testing.",
             "Maintained Jenkins CI/CD and XCTest suites, and represented iOS in cross-functional planning."
           ]
@@ -275,8 +276,7 @@
         "CI/CD ownership"
       ],
       "link": "https://apps.apple.com/in/app/jioaicloud-storage-photos/id1001974993",
-      "appId": "1001974993",
-      "resumeFeature": true
+      "appId": "1001974993"
     },
     {
       "slug": "platfom",
@@ -359,7 +359,8 @@
         "Demo app",
         "CI/CD",
         "SDK documentation"
-      ]
+      ],
+      "link": "https://www.nxp.com/pages/mwallet-2go:MWALLET2GO"
     },
     {
       "slug": "taplinx",
@@ -380,7 +381,8 @@
         "iOS library development",
         "Multi-platform build pipeline",
         "Core-team collaboration on card structures"
-      ]
+      ],
+      "link": "https://www.nxp.com/design/design-center/software/rfid-developer-resources/taplinx-software-development-kit-sdk:TAPLINX"
     },
     {
       "slug": "taginfo",
@@ -791,6 +793,7 @@
         "Xcode",
         "Git (GitHub, Bitbucket, GitLab)",
         "SVN",
+        "Datadog",
         "Google Mobile Ads"
       ]
     }
@@ -813,6 +816,34 @@
     }
   ],
   "awards": [
+    {
+      "name": "Going Beyond — “Killing CocoaPods for good”",
+      "org": "JLL",
+      "date": "Jul 2026",
+      "detail": "Thank You award for moving iOS off CocoaPods to Swift Package Manager ahead of schedule, simplifying builds and dependency setup, and writing the migration guide other teams adopted. Nominated by Petr Urban.",
+      "short": "Going Beyond, CocoaPods to SPM migration"
+    },
+    {
+      "name": "Star Award — “Intentional Impact”",
+      "org": "JLL",
+      "date": "Jun 2025",
+      "detail": "Recognised under the Be Intentional value for leading the Datadog integration on iOS, weighing business value against technical complexity, and consistently helping beyond scope. Nominated by Petr Urban.",
+      "short": "Star Award, Intentional Impact"
+    },
+    {
+      "name": "Ovations — Certificate of Appreciation",
+      "org": "JLL",
+      "date": "Q4 2024",
+      "detail": "Presented by Radha Dhir, CEO and Country Head, India, for delivering outstanding service.",
+      "short": "Ovations Certificate of Appreciation"
+    },
+    {
+      "name": "Ovations — JLLT Superstar",
+      "org": "JLL",
+      "date": "Q1 2024",
+      "detail": "Presented by Radha Dhir, CEO and Country Head, India, and Ashok Jayakumar, for operational excellence, innovative solutions and stakeholder management.",
+      "short": "Ovations JLLT Superstar"
+    },
     {
       "name": "Spot On Award (x2)",
       "org": "Mindtree"

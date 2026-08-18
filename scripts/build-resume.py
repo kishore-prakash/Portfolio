@@ -21,7 +21,7 @@ from docx.shared import Pt, Inches, RGBColor
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "src" / "data" / "resume.json"
-OUT = ROOT / "public" / "Kishore-Prakash-Resume.docx"
+OUT = ROOT / "resume" / "Kishore-Prakash-Resume.docx"
 
 BODY_FONT = "Calibri"
 BODY_SIZE = Pt(10)
@@ -183,7 +183,7 @@ def build(data: dict) -> tuple[Document, list[str], list[str]]:
     # Recency-weighted: the current and recent roles carry the detail, older
     # ones are trimmed to their headline achievements. Standard practice, and
     # it is what keeps this inside two pages.
-    BULLET_CAP = [5, 4, 3, 3, 3, 2, 2]
+    BULLET_CAP = [7, 4, 3, 3, 2, 2, 2]
     role_index = 0
     for company in data["experience"]:
         p = para(doc, space_before=6, space_after=0)
@@ -228,7 +228,9 @@ def build(data: dict) -> tuple[Document, list[str], list[str]]:
         # each: keeps the breadth visible without spending half a page on it.
         grouped: dict[str, list[str]] = {}
         for proj in rest:
-            grouped.setdefault(proj.get("org") or "Other", []).append(proj["name"])
+            # "NXP Semiconductors (via CGI)" would nest parentheses here.
+            org = (proj.get("org") or "Other").split(" (")[0]
+            grouped.setdefault(org, []).append(proj["name"])
         chunks = [
             f"{', '.join(names)} ({org})" if org != "Other" else ", ".join(names)
             for org, names in grouped.items()
@@ -253,7 +255,15 @@ def build(data: dict) -> tuple[Document, list[str], list[str]]:
     p = doc.add_paragraph()
     p.paragraph_format.space_after = Pt(1)
     p.add_run("Awards: ").bold = True
-    p.add_run("; ".join(f"{a['name']} ({a['org']})" for a in data["awards"]) + ".")
+    p.add_run(
+        "; ".join(
+            f"{a.get('short', a['name'])} ({a['org']}"
+            + (f", {a['date']}" if a.get("date") else "")
+            + ")"
+            for a in data["awards"]
+        )
+        + "."
+    )
 
     p = doc.add_paragraph()
     p.add_run("Languages: ").bold = True

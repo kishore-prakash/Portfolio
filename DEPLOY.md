@@ -7,9 +7,13 @@ build locally and upload the `dist/` folder.
 
 ```bash
 npm install          # first time only
-npm run resume       # regenerates the .docx from src/data/resume.json
+npm run resume       # regenerates resume/Kishore-Prakash-Resume.docx
 npm run build        # writes dist/
 ```
+
+The resume is **not published**. It is written to `resume/` rather than
+`public/`, so it never reaches `dist/` and is not downloadable from the site.
+Send it to people directly.
 
 `npm run resume` needs `python-docx`:
 
@@ -22,14 +26,12 @@ Word installed:
 
 ```bash
 osascript -e 'tell application "Microsoft Word"
-  open POSIX file "'$PWD'/public/Kishore-Prakash-Resume.docx"
+  open POSIX file "'$PWD'/resume/Kishore-Prakash-Resume.docx"
   set d to active document
-  save as d file name "'$PWD'/public/Kishore-Prakash-Resume.pdf" file format format PDF
+  save as d file name "'$PWD'/resume/Kishore-Prakash-Resume.pdf" file format format PDF
   close d saving no
 end tell'
 ```
-
-Then run `npm run build` again so the new PDF lands in `dist/`.
 
 ## Upload
 

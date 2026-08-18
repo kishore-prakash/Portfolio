@@ -26,28 +26,29 @@ const stats = [
 
         <div class="mt-8 flex flex-wrap gap-3">
           <a
-            href="/Kishore-Prakash-Resume.pdf"
+            href={`mailto:${basics.email}`}
             class="inline-flex min-h-11 items-center gap-2 rounded-lg px-5 text-sm font-semibold transition-opacity hover:opacity-90"
             style="background: var(--accent); color: var(--accent-on)"
           >
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg>
-            Download résumé
-          </a>
-          <a
-            href="/Kishore-Prakash-Resume.docx"
-            class="inline-flex min-h-11 items-center rounded-lg border px-5 text-sm font-semibold transition-colors hover:bg-[var(--bg-subtle)]"
-            style="border-color: var(--border-strong)"
-          >
-            .docx version
-          </a>
-          <a
-            href={`mailto:${basics.email}`}
-            class="inline-flex min-h-11 items-center rounded-lg border px-5 text-sm font-semibold transition-colors hover:bg-[var(--bg-subtle)]"
-            style="border-color: var(--border-strong)"
-          >
             Get in touch
+          </a>
+          <a
+            href={basics.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex min-h-11 items-center rounded-lg border px-5 text-sm font-semibold transition-colors hover:bg-[var(--bg-subtle)]"
+            style="border-color: var(--border-strong)"
+          >
+            LinkedIn
+          </a>
+          <a
+            href={basics.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex min-h-11 items-center rounded-lg border px-5 text-sm font-semibold transition-colors hover:bg-[var(--bg-subtle)]"
+            style="border-color: var(--border-strong)"
+          >
+            GitHub
           </a>
         </div>
 
