@@ -13,7 +13,11 @@
     "astro": "astro",
     "resume": "python3 scripts/build-resume.py",
     "resume:detailed": "python3 scripts/build-resume-detailed.py",
-    "resume:all": "python3 scripts/build-resume.py && python3 scripts/build-resume-detailed.py"
+    "resume:all": "python3 scripts/build-resume.py && python3 scripts/build-resume-detailed.py",
+    "pm2:start": "pm2 start ecosystem.config.cjs",
+    "pm2:restart": "pm2 restart portfolio",
+    "pm2:stop": "pm2 stop portfolio",
+    "pm2:logs": "pm2 logs portfolio"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",
@@ -21,5 +25,8 @@
     "astro": "^7.2.2",
     "sharp": "^0.35.3",
     "tailwindcss": "^4.1.14"
+  },
+  "devDependencies": {
+    "serve": "^14.2.6"
   }
 }

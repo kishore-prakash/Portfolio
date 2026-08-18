@@ -20,6 +20,10 @@ cannot drift apart.
 | `npm run resume` | Regenerate the two-page `resume/Kishore-Prakash-Resume.docx` |
 | `npm run resume:detailed` | Regenerate `resume/Kishore-Prakash-Resume-Detailed.docx` |
 | `npm run resume:all` | Regenerate both |
+| `npm run pm2:start` | Start the site under pm2 (`ecosystem.config.cjs`, serves `dist/` on :4321) |
+| `npm run pm2:restart` | Restart the pm2 process after a rebuild |
+| `npm run pm2:stop` | Stop the pm2 process |
+| `npm run pm2:logs` | Tail pm2 logs |
 
 Deployment steps are in [DEPLOY.md](DEPLOY.md).
 
@@ -34,8 +38,8 @@ scripts/resume_common.py resume.json loading, placeholder stripping, grouping
 scripts/build-resume.py  -> two-page ATS .docx
 scripts/build-resume-detailed.py  -> designed, human-facing .docx
 resume/                  generated .docx files (default + detailed) — NOT published
-public/                  static passthrough — see DEPLOY.md for the files
-                         that must stay at the domain root
+public/                  static passthrough — copied to dist/ untouched
+ecosystem.config.cjs     pm2 config — serves dist/ via the `serve` package
 ```
 
 ## Metrics placeholders

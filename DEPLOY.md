@@ -1,7 +1,8 @@
 # Deploying kishoreprakash.in
 
-The site is a static Astro build hosted on Hostinger. There is no CI step — you
-build locally and upload the `dist/` folder.
+The site is a static Astro build. Two ways to serve it: upload `dist/` to
+Hostinger (manual, no CI step), or run it under pm2 behind Caddy on a server
+you control.
 
 ## Build
 
@@ -33,7 +34,7 @@ osascript -e 'tell application "Microsoft Word"
 end tell'
 ```
 
-## Upload
+## Upload (Hostinger)
 
 The site now serves from the **domain root**, not `/portfolio/`.
 
@@ -43,32 +44,53 @@ The site now serves from the **domain root**, not `/portfolio/`.
 4. Upload **the contents of `dist/`** — not the `dist` folder itself — into
    `public_html/`.
 
-`dist/` includes a `.htaccess` that 301s `/portfolio/*` to `/`, so old links
-keep working. File managers often hide dotfiles: turn on "show hidden files"
-and confirm `.htaccess` actually uploaded, otherwise the redirect and the
-`apple-app-site-association` content type will both be missing.
-
 ## Verify after upload
 
 ```bash
 curl -I https://kishoreprakash.in/                        # 200, no redirect
-curl -I https://kishoreprakash.in/portfolio/              # 301 -> /
-curl    https://kishoreprakash.in/app-ads.txt             # publisher line
-curl -I https://kishoreprakash.in/apple-app-site-association   # application/json
-curl -I https://kishoreprakash.in/stotramaala/privacy-policy.html   # 200
 ```
 
-Then open the Stotramaala universal link on a real device and confirm it still
-opens the app rather than Safari.
+## Ubuntu server (pm2 + Caddy)
 
-## Files that must stay at the root
+`ecosystem.config.cjs` runs `dist/` through the `serve` package (a
+devDependency) and pm2 keeps that process alive.
 
-These are served to third parties and break silently if they move:
+```bash
+git pull                        # or clone the repo onto the box
+npm ci
+npm run build                   # writes dist/
+npm run pm2:start               # pm2 start ecosystem.config.cjs, serves :4321
+pm2 save                        # persist across reboot
+pm2 startup                     # first time only — run the printed command
+```
 
-| File | Who reads it |
-|---|---|
-| `app-ads.txt` | AdMob — only crawls the domain root. It was previously under `/portfolio/`, where AdMob could not see it. |
-| `apple-app-site-association` | Apple, for Stotramaala universal links. Must be extensionless and served as `application/json`. |
-| `stotramaala/privacy-policy.html`, `stotramaala/tnc.html` | Linked from the App Store listing. |
+Redeploy: `git pull && npm ci && npm run build && npm run pm2:restart`.
+Check it: `pm2 status`, `npm run pm2:logs`.
 
-They live in `public/`, so Astro copies them to `dist/` untouched on every build.
+Caddy reverse-proxies the domain to that port — `.htaccess`-only rules
+(Apache) do not apply here, so anything Apache used to handle (redirects,
+headers) needs doing directly in the Caddyfile instead.
+
+### Caddy config
+
+`/etc/caddy/Caddyfile` on the server (not part of this repo):
+
+```
+kishoreprakash.in {
+	reverse_proxy localhost:4321
+}
+```
+
+Caddy handles TLS automatically (Let's Encrypt) — no separate cert setup
+needed. After editing:
+
+```bash
+sudo caddy validate --config /etc/caddy/Caddyfile
+sudo systemctl reload caddy
+```
+
+Verify:
+
+```bash
+curl -I https://kishoreprakash.in/                        # 200, from Caddy
+```
