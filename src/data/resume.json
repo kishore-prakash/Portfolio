@@ -405,8 +405,7 @@
         "Core-team collaboration on card structures"
       ],
       "link": "https://apps.apple.com/us/app/nfc-taginfo-by-nxp/id1246143596",
-      "appId": "1246143596",
-      "image": "/img/tag_info.png"
+      "appId": "1246143596"
     },
     {
       "slug": "tagwriter",
@@ -428,8 +427,7 @@
         "Core-team collaboration on card structures"
       ],
       "link": "https://apps.apple.com/us/app/nfc-tagwriter-by-nxp/id1246143221",
-      "appId": "1246143221",
-      "image": "/img/tag_writer.png"
+      "appId": "1246143221"
     },
     {
       "slug": "appxplorer",
@@ -651,8 +649,7 @@
         "Backend and UX coordination"
       ],
       "link": "https://apps.apple.com/us/app/pulze247/id1035543880",
-      "appId": "1035543880",
-      "image": "/img/pulse247.png"
+      "appId": "1035543880"
     },
     {
       "slug": "spizza",
@@ -673,8 +670,7 @@
         "Backend and UX coordination"
       ],
       "link": "https://apps.apple.com/sg/app/spizza/id603030085",
-      "appId": "603030085",
-      "image": "/img/spizza.png"
+      "appId": "603030085"
     },
     {
       "slug": "personal-carpool",
