@@ -5,8 +5,17 @@ description: Build and deploy kishoreprakash.in to Hostinger, including the chec
 
 # Deploying
 
-Deployment is manual: upload the **contents** of `dist/` into `public_html/` via
-Hostinger hPanel or FTP. Full steps are in DEPLOY.md.
+There are two paths, and they behave differently:
+
+1. **Hostinger, manual** — upload the **contents** of `dist/` into `public_html/`
+   via hPanel or FTP. Full steps in DEPLOY.md. This is the one `.htaccess` works on.
+2. **GitHub Pages** — `.github/workflows/deploy.yml` builds on push to `master`.
+   `.htaccess` is Apache-only, so on Pages the `/portfolio/* → /` 301 and the
+   `ForceType application/json` for `apple-app-site-association` do nothing.
+   Apple needs that content type, so Stotramaala universal links can break there.
+
+Check which host actually serves `kishoreprakash.in` before assuming a push
+deployed anything.
 
 ## Before uploading
 

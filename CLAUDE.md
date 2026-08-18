@@ -1,7 +1,11 @@
 # kishoreprakash.in — working notes
 
 Personal portfolio and resume for Kishore Prakash. Astro 7 + Tailwind v4 static
-site, plus two generated `.docx` resumes. Deployed by hand to Hostinger.
+site, plus two generated `.docx` resumes (PDFs alongside them, both tracked).
+
+Two deploy paths exist: the manual Hostinger upload documented in DEPLOY.md, and
+`.github/workflows/deploy.yml`, which builds on push to `master` and publishes to
+GitHub Pages. **They are not equivalent** — see below.
 
 ## The one rule
 
@@ -48,6 +52,15 @@ and `public/stotramaala/{privacy-policy,tnc}.html` (linked from the App Store li
 They have gone missing from the working tree twice. A `SessionStart` hook checks
 for them; if it reports any as missing, restore with `git checkout HEAD -- <path>`.
 Suspect an external sync process on `~/Documents`, not the build.
+
+## GitHub Pages cannot do everything Hostinger does
+
+`.htaccess` is Apache-only, so on GitHub Pages the `/portfolio/* → /` 301 and the
+`ForceType application/json` for `apple-app-site-association` are both inert.
+Apple requires that file to be served as `application/json`, so universal links
+into Stotramaala can break on a Pages deploy even though the file uploads fine.
+Confirm which host is authoritative for `kishoreprakash.in` before assuming a
+push deployed anything.
 
 ## Commands
 
