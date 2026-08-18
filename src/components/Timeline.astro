@@ -1,5 +1,6 @@
 ---
 import resume from "../data/resume.json";
+import { stripPlaceholders } from "../lib/text";
 const { experience } = resume;
 ---
 
@@ -53,7 +54,7 @@ const { experience } = resume;
                       style="background: var(--border-strong)"
                       aria-hidden="true"
                     />
-                    {b}
+                    {stripPlaceholders(b)}
                   </li>
                 ))}
               </ul>

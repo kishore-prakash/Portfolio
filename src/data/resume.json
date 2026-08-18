@@ -20,7 +20,7 @@
     "stackoverflow": "https://stackoverflow.com/users/4215161",
     "stotramaala": "https://stotramaala.app",
     "photo": "/img/kishore.jpg",
-    "summary": "Mobile engineering lead with 11+ years designing, building and shipping iOS applications and SDKs across enterprise, telecom and semiconductor products. Currently at JLL on the Corrigo facilities-management suite, working across a 15-person mobile team. Track record of owning mobile architecture end to end — from app and SDK design through CI/CD, release and App Store delivery — and of leading small teams through it. Deep specialisation in Apple platforms plus NFC and Bluetooth Low Energy, with published SDKs used by NXP and Jabra partner teams and eight independently shipped App Store products.",
+    "summary": "Mobile engineering lead with 11+ years designing, building and shipping iOS applications and SDKs across enterprise, telecom and semiconductor products. Currently at JLL on the Corrigo facilities-management suite, working across a 15-person mobile team. Owns mobile architecture end to end — app and SDK design through CI/CD, release and App Store delivery — with published SDKs used by NXP and Jabra partner teams and three App Store products of my own.",
     "summaryShort": "Mobile engineering lead with 11+ years shipping iOS apps and SDKs across enterprise, telecom and semiconductor products. Owns architecture, CI/CD and App Store delivery end to end; specialises in Apple platforms, NFC and Bluetooth Low Energy."
   },
   "competencies": [
@@ -47,12 +47,12 @@
           "end": "Present",
           "current": true,
           "bullets": [
-            "Design and build enterprise-grade iOS applications across JLL's Corrigo facilities-management suite — Corrigo, Corrigo Enterprise and CorrigoPro — used in business-critical maintenance workflows and shipped in 19 languages.",
-            "Own mobile architecture decisions for a 15-engineer cross-platform team spanning Swift, Objective-C and Kotlin, keeping the codebase modular as feature scope grows.",
-            "Deliver QR- and NFC-driven service-request flows so occupants and technicians can raise and action work orders by scanning an asset tag rather than filling in a form.",
-            "Drive app performance work across launch, sync and list rendering, [[reducing X to Y — confirm what you measured]].",
-            "Maintain GitHub Actions CI/CD for the mobile estate, [[cutting build/release time from X to Y]], and keep XCTest coverage moving with each release.",
-            "Partner with product managers, designers and backend teams to scope and land features, and review code across the team to hold a consistent bar."
+            "Build enterprise iOS apps across JLL's Corrigo facilities suite — Corrigo, Corrigo Enterprise and CorrigoPro — shipped in 19 languages.",
+            "Own mobile architecture decisions for a 15-engineer team working across Swift, Objective-C and Kotlin.",
+            "Deliver QR- and NFC-driven service requests so occupants and technicians raise work orders by scanning an asset tag.",
+            "Drive performance work across app launch, sync and list rendering, [[reducing X to Y]].",
+            "Maintain GitHub Actions CI/CD for the mobile estate, [[cutting release time from X to Y]], and grow XCTest coverage each release.",
+            "Partner with product, design and backend to scope features, and review code across the team."
           ]
         }
       ]
@@ -67,11 +67,11 @@
           "start": "Oct 2022",
           "end": "Nov 2023",
           "bullets": [
-            "Led iOS development for JioAICloud (Storage & Photos) from version 58.0.0, a consumer cloud-storage app for photos, video, documents and contacts, working with a team of 6.",
-            "Architected and shipped Platfom, a short-video product, from scratch — owned the app architecture, guided the team through delivery and proposed the feature roadmap.",
-            "Drove an app-size reduction programme on JioAICloud, [[X MB to Y MB]], to improve install and update conversion on low-bandwidth connections.",
-            "Designed scalable architecture for high-traffic mobile products and mentored engineers on it, raising the team's baseline on modularity and testing.",
-            "Maintained Jenkins CI/CD pipelines and XCTest suites, and represented iOS in planning with product, design and backend stakeholders."
+            "Led iOS for JioAICloud (Storage & Photos) from v58.0.0 with a team of 6.",
+            "Architected and shipped Platfom, a short-video product, from scratch — owned architecture and the feature roadmap.",
+            "Drove an app-size reduction programme on JioAICloud, [[X MB to Y MB]], improving install conversion on low-bandwidth connections.",
+            "Designed scalable architecture for high-traffic products and mentored engineers on modularity and testing.",
+            "Maintained Jenkins CI/CD and XCTest suites, and represented iOS in cross-functional planning."
           ]
         }
       ]
@@ -86,10 +86,10 @@
           "start": "Jun 2021",
           "end": "Oct 2022",
           "bullets": [
-            "Led iOS SDK engineering for NXP's MIFARE 2GO — a cloud service that turns a phone into a contactless transit ticket and access credential using a certified secure element.",
-            "Owned the full SDK lifecycle: public API design, card-provisioning and payment flows, XCTest suites, a reference demo app, and AsciiDoc/DocC integration documentation for partner developers.",
-            "Ran Jenkins CI/CD producing multi-platform library builds, and worked directly with NXP's core team on card structures and secure-element behaviour.",
-            "Integrated backend services and REST APIs behind enterprise mobile workflows, and improved app stability and performance release over release."
+            "Led iOS SDK engineering for NXP's MIFARE 2GO, turning a phone into a contactless transit ticket via a certified secure element.",
+            "Owned the SDK lifecycle: public API design, provisioning and payment flows, XCTest, a reference demo app and AsciiDoc/DocC docs.",
+            "Ran Jenkins CI/CD for multi-platform library builds and worked with NXP's core team on card structures.",
+            "Integrated REST backends behind enterprise mobile workflows and improved stability release over release."
           ]
         },
         {
@@ -97,10 +97,10 @@
           "start": "Feb 2019",
           "end": "May 2021",
           "bullets": [
-            "Built mWallet2GO, an iOS SDK for contactless Mastercard and VISA payments through the secure element on phones and wearables, with Cucumber and XCTest coverage on Bamboo CI.",
-            "Developed TapLinx, a Swift/Objective-C/C++ iOS library for reading and writing NFC data across NFC Forum tag types, and consumed it in NXP's own shipping apps.",
-            "Shipped and maintained NXP's public NFC apps — TagInfo (reads NFC Forum Type 2/4/5 tags including NTAG, ICODE and MIFARE), TagWriter (writes contacts, geo, Wi-Fi, SMS and handover records to tags) and AppXplorer (smart-city services over NFC).",
-            "Wrote the developer-facing SDK documentation and release notes that partner integrators worked from."
+            "Built mWallet2GO, an iOS SDK for contactless Mastercard and VISA payments via the secure element in phones and wearables.",
+            "Developed TapLinx, a Swift/Objective-C/C++ library for reading and writing NFC Forum tag types, used by NXP's own apps.",
+            "Shipped and maintained NXP's public NFC apps — TagInfo, TagWriter and AppXplorer.",
+            "Wrote the developer-facing SDK documentation and release notes partner integrators worked from."
           ]
         }
       ]
@@ -115,11 +115,11 @@
           "start": "Apr 2017",
           "end": "Feb 2019",
           "bullets": [
-            "Built the Jabra Universal SDK for macOS and iOS — one library for device settings, call control and firmware update across Jabra's Bluetooth headset range — plus the demo app partners integrate against.",
-            "Implemented Bluetooth Low Energy communication for device pairing, firmware interaction and real-time headset status, and improved connection stability across the device matrix.",
-            "Developed the macOS Jabra Softphone plugins bridging Skype, Bria and Avaya to Jabra hardware for remote call control, with Doxygen documentation and Jenkins CI.",
-            "Worked directly with hardware and firmware teams to lock down reliable device communication, and prepared the user manuals and release documents shipped to integrators.",
-            "Delivered an enterprise iOS app for American Red Cross employees with Microsoft Enterprise SSO, distributed through enterprise channels."
+            "Built the Jabra Universal SDK for macOS and iOS — device settings, call control and firmware update across the headset range.",
+            "Implemented BLE communication for pairing, firmware interaction and live headset status; improved connection stability across devices.",
+            "Developed macOS Jabra Softphone plugins bridging Skype, Bria and Avaya to Jabra hardware for remote call control.",
+            "Worked with hardware and firmware teams on reliable device communication, and wrote the manuals shipped to integrators.",
+            "Delivered an enterprise iOS app for American Red Cross employees behind Microsoft Enterprise SSO."
           ]
         }
       ]
@@ -134,9 +134,9 @@
           "start": "Sep 2016",
           "end": "Apr 2017",
           "bullets": [
-            "Built Stay Ahead, a universal iPhone/iPad app for guests of IDS-network hotels to hold rooms, order room service and view live folio billing.",
-            "Developed Pulze247, a universal app giving hotel owners and general managers real-time property statistics and business-critical KPIs as graphs.",
-            "Defined app flow and UI alongside the design team, and coordinated delivery with the backend team."
+            "Built Stay Ahead, letting guests of IDS-network hotels hold rooms, order room service and watch the folio bill live.",
+            "Developed Pulze247, giving hotel owners real-time property statistics and business-critical KPIs as graphs.",
+            "Defined app flow and UI with the design team and coordinated delivery with backend."
           ]
         }
       ]
@@ -151,9 +151,9 @@
           "start": "Oct 2014",
           "end": "Aug 2016",
           "bullets": [
-            "Built Spizza, an iOS ordering app for a Singapore pizza chain — menu and combo ordering, payment gateway, reservations and outlet maps.",
-            "Developed Personal Carpool, a universal iPhone/iPad carpooling app for drivers and riders to publish and manage rides.",
-            "Owned app flow definition and task assignment for a two-engineer team, and interfaced with backend and UI/UX."
+            "Built Spizza for a Singapore pizza chain — menu and combo ordering, payment gateway, reservations and outlet maps.",
+            "Developed Personal Carpool, letting drivers and riders publish, match and manage rides.",
+            "Owned app flow and task assignment for a two-engineer team, interfacing with backend and UI/UX."
           ]
         }
       ]
@@ -188,7 +188,8 @@
         "CI/CD ownership"
       ],
       "link": "https://apps.apple.com/in/app/corrigo/id1244213800",
-      "appId": "1244213800"
+      "appId": "1244213800",
+      "resumeFeature": true
     },
     {
       "slug": "corrigo-enterprise",
@@ -274,7 +275,8 @@
         "CI/CD ownership"
       ],
       "link": "https://apps.apple.com/in/app/jioaicloud-storage-photos/id1001974993",
-      "appId": "1001974993"
+      "appId": "1001974993",
+      "resumeFeature": true
     },
     {
       "slug": "platfom",
@@ -333,7 +335,8 @@
         "CI/CD",
         "SDK documentation"
       ],
-      "link": "https://www.nxp.com/products/rfid-nfc/mifare-hf/mifare-2go:MIFARE-2GO"
+      "link": "https://www.nxp.com/products/security-and-authentication/secure-service-2go-platform/mifare-2go:MIFARE2GO",
+      "resumeFeature": true
     },
     {
       "slug": "mwallet2go",
@@ -356,8 +359,7 @@
         "Demo app",
         "CI/CD",
         "SDK documentation"
-      ],
-      "link": "https://www.nxp.com/"
+      ]
     },
     {
       "slug": "taplinx",
@@ -378,8 +380,7 @@
         "iOS library development",
         "Multi-platform build pipeline",
         "Core-team collaboration on card structures"
-      ],
-      "link": "https://www.nxp.com/products/rfid-nfc/nfc-hf/nfc-reader-libraries:NFC-READER-LIBRARY"
+      ]
     },
     {
       "slug": "taginfo",
@@ -565,7 +566,8 @@
       ],
       "link": "https://apps.apple.com/in/app/stotramala-multilingual/id1523220364",
       "appId": "1523220364",
-      "site": "https://stotramaala.app"
+      "site": "https://stotramaala.app",
+      "resumeFeature": true
     },
     {
       "slug": "thoughtcast",
@@ -812,7 +814,7 @@
   ],
   "awards": [
     {
-      "name": "Spot On Award (×2)",
+      "name": "Spot On Award (x2)",
       "org": "Mindtree"
     },
     {

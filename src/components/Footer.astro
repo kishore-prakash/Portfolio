@@ -21,12 +21,18 @@ const year = new Date().getFullYear();
         </p>
         <div class="mt-6 space-y-2 text-[15px]">
           <p>
-            <a href={`mailto:${basics.email}`} class="font-medium underline-offset-4 hover:underline">
+            <a
+              href={`mailto:${basics.email}`}
+              class="inline-flex min-h-11 items-center font-medium underline-offset-4 hover:underline"
+            >
               {basics.email}
             </a>
           </p>
           <p>
-            <a href={`tel:${basics.phone.replace(/\s/g, "")}`} class="font-medium underline-offset-4 hover:underline">
+            <a
+              href={`tel:${basics.phone.replace(/\s/g, "")}`}
+              class="inline-flex min-h-11 items-center font-medium underline-offset-4 hover:underline"
+            >
               {basics.phone}
             </a>
           </p>
