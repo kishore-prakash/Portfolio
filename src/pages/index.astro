@@ -10,6 +10,21 @@ import resume from "../data/resume.json";
 
 const { basics, skills, education, certifications, awards, languages } = resume;
 
+type Award = { name: string; org: string; date?: string; detail?: string };
+
+// Grouped by employer, preserving the newest-first order resume.json is in.
+// Awards with no date or citation are one-liners; a header each would leave the
+// section mostly whitespace, so they collapse into a single trailing group.
+const dated = (awards as Award[]).filter((a) => a.date);
+const undated = (awards as Award[]).filter((a) => !a.date);
+
+const awardsByOrg = dated.reduce<[string, Award[]][]>((acc, a) => {
+  const row = acc.find(([org]) => org === a.org);
+  if (row) row[1].push(a);
+  else acc.push([a.org, [a]]);
+  return acc;
+}, []);
+
 const title = `${basics.name} — ${basics.title}`;
 const description = basics.summaryShort;
 ---
@@ -128,8 +143,71 @@ const description = basics.summaryShort;
       </dl>
     </Section>
 
-    <Section id="education" eyebrow="Background" title="Education, certifications & awards" tint>
-      <div class="grid gap-10 sm:grid-cols-3">
+    <Section
+      id="awards"
+      eyebrow="Recognition"
+      title="Awards & accomplishments"
+      lead="Peer- and leadership-nominated recognitions, newest first, for delivery, engineering craft and helping teams beyond my own scope."
+      tint
+    >
+      <div class="space-y-10">
+        {
+          awardsByOrg.map(([org, items]) => (
+            <div>
+              <div class="flex items-baseline justify-between gap-4 border-b pb-2" style="border-color: var(--border)">
+                <h3 class="text-[15px] font-semibold tracking-tight">{org}</h3>
+                <p class="text-[12.5px] tabular-nums" style="color: var(--text-faint)">
+                  {items.length} {items.length === 1 ? "award" : "awards"}
+                </p>
+              </div>
+              <ul class="mt-4 grid gap-4 sm:grid-cols-2">
+                {items.map((a) => (
+                  <li class="surface rounded-lg p-4">
+                    <div class="flex items-baseline justify-between gap-3">
+                      <p class="text-[14.5px] font-semibold">{a.name}</p>
+                      {a.date && (
+                        <p class="shrink-0 text-[12.5px] tabular-nums" style="color: var(--text-faint)">
+                          {a.date}
+                        </p>
+                      )}
+                    </div>
+                    {a.detail && (
+                      <p class="mt-2 text-[13.5px] leading-relaxed" style="color: var(--text-muted)">
+                        {a.detail}
+                      </p>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+
+        {
+          undated.length > 0 && (
+            <div>
+              <div class="flex items-baseline justify-between gap-4 border-b pb-2" style="border-color: var(--border)">
+                <h3 class="text-[15px] font-semibold tracking-tight">Earlier recognition</h3>
+                <p class="text-[12.5px] tabular-nums" style="color: var(--text-faint)">
+                  {undated.length} awards
+                </p>
+              </div>
+              <ul class="mt-4 grid gap-2 sm:grid-cols-2">
+                {undated.map((a) => (
+                  <li class="text-[14px]">
+                    <span class="font-medium">{a.name}</span>
+                    <span style="color: var(--text-faint)"> — {a.org}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+      </div>
+    </Section>
+
+    <Section id="education" eyebrow="Background" title="Education & certifications">
+      <div class="grid gap-10 sm:grid-cols-2">
         <div>
           <h3 class="text-xs font-semibold uppercase tracking-[0.14em]" style="color: var(--text-faint)">
             Education
@@ -158,29 +236,6 @@ const description = basics.summaryShort;
           </h3>
           <ul class="mt-3 space-y-2 text-[14px]" style="color: var(--text-muted)">
             {certifications.map((c) => <li>{c.name}</li>)}
-          </ul>
-        </div>
-
-        <div class="sm:col-span-3">
-          <h3 class="text-xs font-semibold uppercase tracking-[0.14em]" style="color: var(--text-faint)">
-            Awards & recognition
-          </h3>
-          <ul class="mt-4 grid gap-4 sm:grid-cols-2">
-            {
-              awards.map((a) => (
-                <li>
-                  <p class="text-[14.5px] font-semibold">{a.name}</p>
-                  <p class="mt-0.5 text-[13px]" style="color: var(--text-faint)">
-                    {[a.org, (a as { date?: string }).date].filter(Boolean).join(" · ")}
-                  </p>
-                  {(a as { detail?: string }).detail && (
-                    <p class="mt-1.5 text-[13.5px] leading-relaxed" style="color: var(--text-muted)">
-                      {(a as { detail?: string }).detail}
-                    </p>
-                  )}
-                </li>
-              ))
-            }
           </ul>
         </div>
       </div>

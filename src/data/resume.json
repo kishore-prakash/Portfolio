@@ -845,8 +845,39 @@
       "short": "Ovations JLLT Superstar"
     },
     {
-      "name": "Spot On Award (x2)",
-      "org": "Mindtree"
+      "name": "Spot On — “Partnership”",
+      "org": "Mindtree",
+      "date": "Feb 2019",
+      "detail": "Recognised for partnership — collaborative spirit, unrelenting dedication and expert thinking — for support on the Schedule F module. Nominated by Pavana Mandyakrishnegowda, Module Lead.",
+      "short": "Spot On, Partnership"
+    },
+    {
+      "name": "Recognition — “Accountability”",
+      "org": "Mindtree",
+      "date": "Jan 2019",
+      "detail": "Recognised for accountability — collaborative spirit, unrelenting dedication and expert thinking. Nominated by Meghana Ramesh, Senior Engineer.",
+      "short": "Recognition, Accountability"
+    },
+    {
+      "name": "Master Mind — “Expert Thinking”",
+      "org": "Mindtree",
+      "date": "Dec 2018",
+      "detail": "Awarded for expert thinking after helping another team deliver work they could not have completed without support. Presented by Hormuz M. Gotla, General Manager, and Deepak D, Senior Technical Manager.",
+      "short": "Master Mind, Expert Thinking"
+    },
+    {
+      "name": "A-Team — Exemplary Team Spirit",
+      "org": "Mindtree",
+      "date": "Jan 2018",
+      "detail": "Awarded for displaying exemplary team spirit. Presented by Sanju Mannaret Sarasan, Technical Manager, and Nikhil Joseph, Test Lead.",
+      "short": "A-Team, exemplary team spirit"
+    },
+    {
+      "name": "Unstoppable — Execution Excellence",
+      "org": "Mindtree",
+      "date": "Jul 2017",
+      "detail": "Awarded for displaying execution excellence, for the work that made the iOS SDK project a success. Presented by Jyothy Krishnan Nair, Senior Project Manager, and Shrinivas Budi, Technical Manager.",
+      "short": "Unstoppable, execution excellence"
     },
     {
       "name": "Employee of the Month",

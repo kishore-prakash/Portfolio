@@ -1,13 +1,23 @@
 #!/usr/bin/env python3
-"""Generate an ATS-friendly .docx resume from src/data/resume.json.
+"""Generate .docx resumes from src/data/resume.json.
 
-ATS parsers choke on tables, text boxes, columns, headers/footers and images,
-so this builds a single linear text flow with standard section headings and a
-real Word list style for bullets. Dates are placed with a right-aligned tab
-stop rather than a table cell, which keeps them on the same visual line while
-still parsing as one paragraph.
+Two variants, same data:
+
+  default      two-page ATS resume. Bullets are capped per role by BULLET_CAP
+               and projects are condensed, so it fits the page budget
+               recruiters and parsers expect.
+  --detailed   full dossier. Every bullet, every project, every award with
+               its citation. No page budget. Use it for interviews, internal
+               profiles and portals that ask for complete history.
+
+Both are ATS-safe: ATS parsers choke on tables, text boxes, columns,
+headers/footers and images, so this builds a single linear text flow with
+standard section headings and a real Word list style for bullets. Dates are
+placed with a right-aligned tab stop rather than a table cell, which keeps
+them on the same visual line while still parsing as one paragraph.
 """
 
+import argparse
 import json
 import re
 import sys
@@ -22,6 +32,7 @@ from docx.shared import Pt, Inches, RGBColor
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "src" / "data" / "resume.json"
 OUT = ROOT / "resume" / "Kishore-Prakash-Resume.docx"
+OUT_DETAILED = ROOT / "resume" / "Kishore-Prakash-Resume-Detailed.docx"
 
 BODY_FONT = "Calibri"
 BODY_SIZE = Pt(10)
@@ -29,6 +40,19 @@ NAME_SIZE = Pt(20)
 HEADING_SIZE = Pt(12)
 INK = RGBColor(0x1A, 0x1A, 0x1A)
 RULE = "1F4E79"
+
+# Recency-weighted: the current and recent roles carry the detail, older ones
+# are trimmed to their headline achievements. Standard practice, and it is what
+# keeps the default resume inside two pages. One entry per role, newest first;
+# roles past the end of the list reuse the last value. Ignored by --detailed.
+BULLET_CAP = [7, 4, 3, 3, 2, 2, 2]
+
+CATEGORY_LABELS = {
+    "enterprise": "Enterprise apps",
+    "sdk": "SDKs & frameworks",
+    "nfc": "NFC apps",
+    "personal": "Personal apps",
+}
 
 # Metrics still awaiting confirmation are written as [[...]] in resume.json.
 # Rather than shipping placeholder text or inventing a number, strip the
@@ -117,6 +141,11 @@ def heading(doc, text: str) -> None:
     bottom_rule(p)
 
 
+def subheading(doc, text: str) -> None:
+    p = para(doc, text, bold=True, size=Pt(10.5), space_before=7, space_after=1)
+    p.runs[0].font.color.rgb = RGBColor(0x1F, 0x4E, 0x79)
+
+
 def role_line(doc, left: str, right: str, *, bold_left=True, italic_left=False):
     """Title on the left, dates flush right, via a right tab stop."""
     p = doc.add_paragraph()
@@ -136,14 +165,22 @@ def bullet(doc, text: str) -> None:
     p.paragraph_format.space_after = Pt(1.5)
 
 
-def build(data: dict) -> tuple[Document, list[str], list[str]]:
-    dropped: list[str] = []
-    trimmed: list[str] = []
-    doc = Document()
-    setup_styles(doc)
-    b = data["basics"]
+def labelled(doc, label: str, text: str, *, space_after=1, space_before=0):
+    p = doc.add_paragraph()
+    p.paragraph_format.space_before = Pt(space_before)
+    p.paragraph_format.space_after = Pt(space_after)
+    p.add_run(f"{label}: ").bold = True
+    p.add_run(text)
+    return p
 
-    # --- Contact block: plain text lines, never a header or a table. ---
+
+def award_line(a: dict) -> str:
+    date = f", {a['date']}" if a.get("date") else ""
+    return f"{a.get('short', a['name'])} ({a['org']}{date})"
+
+
+def build_contact(doc, b: dict) -> None:
+    """Plain text lines, never a header or a table."""
     name = para(doc, b["name"], bold=True, size=NAME_SIZE, align=WD_ALIGN_PARAGRAPH.CENTER)
     name.paragraph_format.space_after = Pt(1)
     para(doc, b["title"], size=Pt(11.5), align=WD_ALIGN_PARAGRAPH.CENTER, space_after=3)
@@ -152,38 +189,32 @@ def build(data: dict) -> tuple[Document, list[str], list[str]]:
     para(doc, f"{b['linkedinLabel']}  |  {b['websiteLabel']}  |  {b['githubLabel']}",
          size=Pt(10), align=WD_ALIGN_PARAGRAPH.CENTER)
 
-    heading(doc, "Professional Summary")
-    para(doc, b["summary"], space_after=2)
 
-    heading(doc, "Core Competencies")
-    comps = data["competencies"]
-    half = (len(comps) + 1) // 2
-    for row in (comps[:half], comps[half:]):
-        para(doc, "  •  ".join(row), space_after=1)
-
+def build_skills(doc, data: dict, detailed: bool) -> None:
     heading(doc, "Technical Skills")
-    # Merged into six lines so the skills block stays scannable and the
-    # resume stays inside two pages.
     by_group = {g["group"]: g["items"] for g in data["skills"]}
-    merged = [
-        ("Languages", by_group["Languages"]),
-        ("Platforms", by_group["Apple Platforms"] + by_group["Cross-Platform"]),
-        ("Connectivity", by_group["Connectivity"]),
-        ("Architecture & APIs", by_group["Architecture & APIs"]),
-        ("CI/CD & Testing", by_group["CI/CD"] + by_group["Testing"]),
-        ("Data & Tooling", by_group["Data"] + by_group["Documentation"] + by_group["Tooling"]),
-    ]
-    for label, items in merged:
-        p = doc.add_paragraph()
-        p.paragraph_format.space_after = Pt(1)
-        p.add_run(f"{label}: ").bold = True
-        p.add_run(", ".join(items))
+    if detailed:
+        # Every group on its own line — no page budget to defend here.
+        groups = [(g["group"], g["items"]) for g in data["skills"]]
+    else:
+        # Merged into six lines so the skills block stays scannable and the
+        # resume stays inside two pages.
+        groups = [
+            ("Languages", by_group["Languages"]),
+            ("Platforms", by_group["Apple Platforms"] + by_group["Cross-Platform"]),
+            ("Connectivity", by_group["Connectivity"]),
+            ("Architecture & APIs", by_group["Architecture & APIs"]),
+            ("CI/CD & Testing", by_group["CI/CD"] + by_group["Testing"]),
+            ("Data & Tooling",
+             by_group["Data"] + by_group["Documentation"] + by_group["Tooling"]),
+        ]
+    for label, items in groups:
+        labelled(doc, label, ", ".join(items))
 
+
+def build_experience(doc, data: dict, detailed: bool,
+                     dropped: list[str], trimmed: list[str]) -> None:
     heading(doc, "Professional Experience")
-    # Recency-weighted: the current and recent roles carry the detail, older
-    # ones are trimmed to their headline achievements. Standard practice, and
-    # it is what keeps this inside two pages.
-    BULLET_CAP = [7, 4, 3, 3, 2, 2, 2]
     role_index = 0
     for company in data["experience"]:
         p = para(doc, space_before=6, space_after=0)
@@ -191,20 +222,27 @@ def build(data: dict) -> tuple[Document, list[str], list[str]]:
         run.bold = True
         run.font.size = Pt(11)
         p.add_run(f" — {company['location']}")
+        if detailed and company.get("context"):
+            para(doc, company["context"], italic=True, size=Pt(9.5), space_after=1)
         for role in company["roles"]:
             role_line(doc, role["title"], f"{role['start']} – {role['end']}", italic_left=True)
-            cap = BULLET_CAP[min(role_index, len(BULLET_CAP) - 1)]
-            for raw in role["bullets"][:cap]:
+            bullets = role["bullets"]
+            if not detailed:
+                cap = BULLET_CAP[min(role_index, len(BULLET_CAP) - 1)]
+                if len(bullets) > cap:
+                    trimmed.append(
+                        f"{company['company']} / {role['title']}: "
+                        f"{len(bullets) - cap} bullet(s) held back for length"
+                    )
+                bullets = bullets[:cap]
+            for raw in bullets:
                 if has_placeholder(raw):
                     dropped.append(f"{company['company']} / {role['title']}: {raw}")
                 bullet(doc, clean(raw))
-            if len(role["bullets"]) > cap:
-                trimmed.append(
-                    f"{company['company']} / {role['title']}: "
-                    f"{len(role['bullets']) - cap} bullet(s) held back for length"
-                )
             role_index += 1
 
+
+def build_projects_condensed(doc, data: dict) -> None:
     heading(doc, "Selected Projects")
     featured = [p for p in data["projects"] if p.get("resumeFeature")]
     rest = [p for p in data["projects"] if not p.get("resumeFeature")]
@@ -241,54 +279,145 @@ def build(data: dict) -> tuple[Document, list[str], list[str]]:
         p.add_run("Also shipped: ").bold = True
         p.add_run("; ".join(chunks) + ".")
 
+
+def build_projects_full(doc, data: dict) -> None:
+    heading(doc, "Projects")
+    by_category: dict[str, list[dict]] = {}
+    for proj in data["projects"]:
+        by_category.setdefault(proj.get("category", "other"), []).append(proj)
+
+    for category, label in CATEGORY_LABELS.items():
+        projects = by_category.get(category)
+        if not projects:
+            continue
+        subheading(doc, label)
+        for proj in projects:
+            p = doc.add_paragraph()
+            p.paragraph_format.space_before = Pt(4)
+            p.paragraph_format.space_after = Pt(0)
+            p.add_run(proj["name"]).bold = True
+            meta = [proj.get("org"), proj.get("years"), f"team of {proj['teamSize']}"]
+            p.add_run(" — " + " | ".join(x for x in meta if x)).italic = True
+
+            para(doc, proj["blurb"], space_after=1)
+            for h in proj.get("highlights", []):
+                bullet(doc, clean(h))
+            labelled(doc, "Tech", ", ".join(proj["tech"]) + ".")
+            if proj.get("role"):
+                labelled(doc, "Role", "; ".join(proj["role"]) + ".")
+            if proj.get("link"):
+                labelled(doc, "Link", proj["link"])
+            elif proj.get("delisted"):
+                labelled(doc, "Link", "no longer on the App Store")
+
+
+def build_closing_condensed(doc, data: dict) -> None:
+    heading(doc, "Certifications, Awards & Languages")
+    labelled(doc, "Certifications",
+             "; ".join(c["name"] for c in data["certifications"]) + ".")
+    labelled(doc, "Awards",
+             "; ".join(award_line(a) for a in data["awards"]) + ".")
+    labelled(doc, "Languages",
+             "; ".join(f"{l['name']} — {l['level'].lower()}" for l in data["languages"]),
+             space_after=0)
+
+
+def build_closing_full(doc, data: dict) -> None:
+    heading(doc, "Certifications")
+    for c in data["certifications"]:
+        bullet(doc, c["name"])
+
+    heading(doc, "Awards & Recognition")
+    for a in data["awards"]:
+        p = doc.add_paragraph()
+        p.paragraph_format.space_before = Pt(4)
+        p.paragraph_format.space_after = Pt(0)
+        p.paragraph_format.tab_stops.add_tab_stop(Inches(7.2), WD_TAB_ALIGNMENT.RIGHT)
+        p.add_run(a["name"]).bold = True
+        p.add_run(f" — {a['org']}").italic = True
+        if a.get("date"):
+            p.add_run("\t" + a["date"])
+        if a.get("detail"):
+            para(doc, a["detail"], size=Pt(9.5), space_after=1)
+
+    heading(doc, "Languages")
+    for l in data["languages"]:
+        bullet(doc, f"{l['name']} — {l['level']}")
+
+
+def build(data: dict, *, detailed: bool = False) -> tuple[Document, list[str], list[str]]:
+    dropped: list[str] = []
+    trimmed: list[str] = []
+    doc = Document()
+    setup_styles(doc)
+
+    build_contact(doc, data["basics"])
+
+    heading(doc, "Professional Summary")
+    para(doc, data["basics"]["summary"], space_after=2)
+
+    heading(doc, "Core Competencies")
+    comps = data["competencies"]
+    half = (len(comps) + 1) // 2
+    for row in (comps[:half], comps[half:]):
+        para(doc, "  •  ".join(row), space_after=1)
+
+    build_skills(doc, data, detailed)
+    build_experience(doc, data, detailed, dropped, trimmed)
+
+    if detailed:
+        build_projects_full(doc, data)
+    else:
+        build_projects_condensed(doc, data)
+
     heading(doc, "Education")
     for e in data["education"]:
         role_line(doc, e["degree"], f"{e['start']} – {e['end']}")
         para(doc, f"{e['school']} | {e['affiliation']}", size=Pt(10))
 
-    heading(doc, "Certifications, Awards & Languages")
-    p = doc.add_paragraph()
-    p.paragraph_format.space_after = Pt(1)
-    p.add_run("Certifications: ").bold = True
-    p.add_run("; ".join(c["name"] for c in data["certifications"]) + ".")
-
-    p = doc.add_paragraph()
-    p.paragraph_format.space_after = Pt(1)
-    p.add_run("Awards: ").bold = True
-    p.add_run(
-        "; ".join(
-            f"{a.get('short', a['name'])} ({a['org']}"
-            + (f", {a['date']}" if a.get("date") else "")
-            + ")"
-            for a in data["awards"]
-        )
-        + "."
-    )
-
-    p = doc.add_paragraph()
-    p.add_run("Languages: ").bold = True
-    p.add_run("; ".join(f"{l['name']} — {l['level'].lower()}" for l in data["languages"]) + ".")
+    if detailed:
+        build_closing_full(doc, data)
+    else:
+        build_closing_condensed(doc, data)
 
     return doc, dropped, trimmed
 
 
 def main() -> int:
-    data = json.loads(DATA.read_text())
-    doc, dropped, trimmed = build(data)
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    doc.save(OUT)
-    print(f"wrote {OUT.relative_to(ROOT)}")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--detailed", action="store_true",
+        help="build the full dossier instead of the two-page resume",
+    )
+    parser.add_argument(
+        "--all", action="store_true", help="build both variants",
+    )
+    args = parser.parse_args()
 
-    if dropped:
-        print(f"\n{len(dropped)} bullet(s) had unconfirmed metric placeholders. "
-              f"The placeholder clause was removed and the bullet shipped "
-              f"qualitatively — no number was invented:\n")
-        for d in dropped:
-            print(f"  - {d}")
-    if trimmed:
-        print(f"\nTrimmed for length (still in resume.json and on the website):\n")
-        for t in trimmed:
-            print(f"  - {t}")
+    data = json.loads(DATA.read_text())
+    variants = []
+    if args.all:
+        variants = [(False, OUT), (True, OUT_DETAILED)]
+    else:
+        variants = [(args.detailed, OUT_DETAILED if args.detailed else OUT)]
+
+    for detailed, out in variants:
+        doc, dropped, trimmed = build(data, detailed=detailed)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        doc.save(out)
+        print(f"wrote {out.relative_to(ROOT)}")
+
+        if dropped:
+            print(f"\n{len(dropped)} bullet(s) had unconfirmed metric placeholders. "
+                  f"The placeholder clause was removed and the bullet shipped "
+                  f"qualitatively — no number was invented:\n")
+            for d in dropped:
+                print(f"  - {d}")
+        if trimmed:
+            print("\nTrimmed for length (still in resume.json, on the website "
+                  "and in the --detailed build):\n")
+            for t in trimmed:
+                print(f"  - {t}")
     return 0
 
 

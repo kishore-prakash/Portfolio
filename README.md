@@ -17,7 +17,9 @@ cannot drift apart.
 | `npm run dev` | Dev server on http://localhost:4321 |
 | `npm run build` | Static build into `dist/` |
 | `npm run preview` | Serve `dist/` locally |
-| `npm run resume` | Regenerate `resume/Kishore-Prakash-Resume.docx` |
+| `npm run resume` | Regenerate the two-page `resume/Kishore-Prakash-Resume.docx` |
+| `npm run resume:detailed` | Regenerate `resume/Kishore-Prakash-Resume-Detailed.docx` |
+| `npm run resume:all` | Regenerate both |
 
 Deployment steps are in [DEPLOY.md](DEPLOY.md).
 
@@ -29,7 +31,7 @@ src/components/          Nav, Hero, Section, Timeline, ProjectGrid, Footer
 src/layouts/Base.astro   head, SEO, JSON-LD, theme bootstrap
 src/pages/               index.astro, 404.astro
 scripts/build-resume.py  resume.json -> ATS .docx
-resume/                  generated .docx and .pdf — NOT published
+resume/                  generated .docx files (default + detailed) — NOT published
 public/                  static passthrough — see DEPLOY.md for the files
                          that must stay at the domain root
 ```
@@ -42,11 +44,27 @@ ships the bullet qualitatively rather than guessing a figure, and prints a list
 of what it dropped. Fill the real numbers into `resume.json` and rerun
 `npm run resume` — nothing else needs to change.
 
+## Two resumes, one dataset
+
+`scripts/build-resume.py` builds two variants from the same `resume.json`:
+
+| Variant | File | Length | For |
+|---|---|---|---|
+| default | `Kishore-Prakash-Resume.docx` | 2 pages | applications, recruiters, ATS uploads |
+| `--detailed` | `Kishore-Prakash-Resume-Detailed.docx` | ~6 pages | interviews, internal profiles, portals that want full history |
+
+The detailed build has no page budget, so it prints what the two-page build
+holds back: every bullet for every role (no `BULLET_CAP`), company context
+lines, all ten skill groups separately, all 22 projects grouped by category
+with their highlights, tech, role and link, and every award with its full
+citation. Both variants use the same ATS-safe layout — no tables, text boxes,
+columns, images or header/footer content — so the detailed one still parses.
+
 ## Resume length and `BULLET_CAP`
 
-The website shows every bullet in `resume.json`. The `.docx` does not — it is
-held to two pages, so `BULLET_CAP` in `scripts/build-resume.py` caps how many
-bullets each role prints:
+The website shows every bullet in `resume.json`. The default `.docx` does not —
+it is held to two pages, so `BULLET_CAP` in `scripts/build-resume.py` caps how
+many bullets each role prints:
 
 ```python
 BULLET_CAP = [7, 4, 3, 3, 2, 2, 2]
@@ -60,10 +78,11 @@ only its headline achievements.
 Bullets are taken in the order they appear in `resume.json`, so **put the
 strongest ones first**; anything past the cap simply does not print.
 
-`npm run resume` reports what it held back:
+`npm run resume` reports what it held back — all of which still prints in the
+`--detailed` build:
 
 ```
-Trimmed for length (still in resume.json and on the website):
+Trimmed for length (still in resume.json, on the website and in the --detailed build):
   - Mindtree / Senior Software Engineer: 3 bullet(s) held back for length
 ```
 
@@ -89,9 +108,10 @@ if you would rather keep the content.
 
 ## The resume is not on the website
 
-There is no download link and the file lives outside `public/`, so it never
-ships to `dist/`. To publish it again, point `OUT` in `scripts/build-resume.py`
-back at `public/` and add a link in `src/components/Hero.astro`.
+There is no download link and the files live outside `public/`, so they never
+ship to `dist/`. To publish again, point `OUT` (and `OUT_DETAILED`) in
+`scripts/build-resume.py` back at `public/` and add a link in
+`src/components/Hero.astro`.
 
 ## Resume constraints
 
