@@ -12,8 +12,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "resume": "python3 scripts/build-resume.py",
-    "resume:detailed": "python3 scripts/build-resume.py --detailed",
-    "resume:all": "python3 scripts/build-resume.py --all"
+    "resume:detailed": "python3 scripts/build-resume-detailed.py",
+    "resume:all": "python3 scripts/build-resume.py && python3 scripts/build-resume-detailed.py"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",

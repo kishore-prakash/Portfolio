@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # Astro scaffold leftovers
 .vscode/
+
+# python
+__pycache__/
