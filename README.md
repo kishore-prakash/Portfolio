@@ -30,7 +30,9 @@ src/data/resume.json     content: basics, experience, projects, skills, awards
 src/components/          Nav, Hero, Section, Timeline, ProjectGrid, Footer
 src/layouts/Base.astro   head, SEO, JSON-LD, theme bootstrap
 src/pages/               index.astro, 404.astro
-scripts/build-resume.py  resume.json -> ATS .docx
+scripts/resume_common.py resume.json loading, placeholder stripping, grouping
+scripts/build-resume.py  -> two-page ATS .docx
+scripts/build-resume-detailed.py  -> designed, human-facing .docx
 resume/                  generated .docx files (default + detailed) — NOT published
 public/                  static passthrough — see DEPLOY.md for the files
                          that must stay at the domain root
@@ -46,19 +48,32 @@ of what it dropped. Fill the real numbers into `resume.json` and rerun
 
 ## Two resumes, one dataset
 
-`scripts/build-resume.py` builds two variants from the same `resume.json`:
+`resume.json` feeds two documents, built by two scripts, for two audiences:
 
-| Variant | File | Length | For |
-|---|---|---|---|
-| default | `Kishore-Prakash-Resume.docx` | 2 pages | applications, recruiters, ATS uploads |
-| `--detailed` | `Kishore-Prakash-Resume-Detailed.docx` | ~6 pages | interviews, internal profiles, portals that want full history |
+| | `Kishore-Prakash-Resume.docx` | `Kishore-Prakash-Resume-Detailed.docx` |
+|---|---|---|
+| Built by | `scripts/build-resume.py` | `scripts/build-resume-detailed.py` |
+| Length | 2 pages | ~9 pages |
+| Audience | ATS, job portals, recruiters | hiring managers, interview panels, internal profiles |
+| ATS-safe | yes | **no — by design** |
 
-The detailed build has no page budget, so it prints what the two-page build
-holds back: every bullet for every role (no `BULLET_CAP`), company context
-lines, all ten skill groups separately, all 22 projects grouped by category
-with their highlights, tech, role and link, and every award with its full
-citation. Both variants use the same ATS-safe layout — no tables, text boxes,
-columns, images or header/footer content — so the detailed one still parses.
+The default build is a single linear text flow: no tables, no colour, no
+header or footer, bullets capped by `BULLET_CAP`, projects condensed. Those are
+exactly the constraints that keep a parser from dropping content.
+
+The detailed build is designed for a human reader, so it spends what the ATS
+build cannot: Georgia display type against Calibri body copy, the site's blue
+(`#0055D4`) on zinc ink, letter-spaced section labels over hairline rules,
+soft-filled competency chips, and project cards with an accent edge. It also
+carries everything the two-page build holds back — every bullet, company
+context lines, all ten skill groups, all 22 projects with highlights, tech,
+role and link, and every award with its citation.
+
+Because it uses tables, shading and a footer, **do not upload the detailed
+build to a job portal.** Send it to people.
+
+Both read the same `src/data/resume.json` and share `scripts/resume_common.py`,
+so they cannot disagree about the facts — only about how much of them to show.
 
 ## Resume length and `BULLET_CAP`
 
