@@ -1,5 +1,6 @@
 ---
 import resume from "../data/resume.json";
+import { withBase } from "../lib/base";
 
 const CATEGORIES = [
   { key: "all", label: "All" },
@@ -15,7 +16,9 @@ const projects = [...resume.projects].sort(
 );
 
 const iconFor = (p: (typeof projects)[number]) =>
-  "appId" in p ? `/img/apps/${p.slug}.jpg` : (p as { image?: string }).image;
+  "appId" in p
+    ? withBase(`/img/apps/${p.slug}.jpg`)
+    : withBase((p as { image?: string }).image ?? "");
 
 const counts = Object.fromEntries(
   CATEGORIES.map((c) => [

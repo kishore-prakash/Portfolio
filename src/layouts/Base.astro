@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import resume from "../data/resume.json";
+import { withBase } from "../lib/base";
 
 interface Props {
   title: string;
@@ -10,7 +11,7 @@ interface Props {
 const { title, description } = Astro.props;
 const { basics } = resume;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
-const ogImage = new URL("/img/og.png", Astro.site).href;
+const ogImage = new URL(withBase("/img/og.png"), Astro.site).href;
 
 const personSchema = {
   "@context": "https://schema.org",
@@ -20,7 +21,7 @@ const personSchema = {
   email: `mailto:${basics.email}`,
   telephone: basics.phone,
   url: basics.website,
-  image: new URL(basics.photo, Astro.site).href,
+  image: new URL(withBase(basics.photo), Astro.site).href,
   address: {
     "@type": "PostalAddress",
     addressLocality: "Bengaluru",
@@ -48,13 +49,13 @@ const personSchema = {
     <meta name="generator" content={Astro.generator} />
     <meta name="author" content={basics.name} />
 
-    <link rel="preload" href="/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={withBase("/fonts/InterVariable.woff2")} as="font" type="font/woff2" crossorigin />
 
-    <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png" />
-    <link rel="manifest" href="/favicon/manifest.json" />
+    <link rel="icon" href={withBase("/favicon/favicon.ico")} sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href={withBase("/favicon/favicon-32x32.png")} />
+    <link rel="icon" type="image/png" sizes="16x16" href={withBase("/favicon/favicon-16x16.png")} />
+    <link rel="apple-touch-icon" sizes="180x180" href={withBase("/favicon/apple-icon-180x180.png")} />
+    <link rel="manifest" href={withBase("/favicon/manifest.json")} />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0b0b0f" media="(prefers-color-scheme: dark)" />
 

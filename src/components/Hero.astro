@@ -1,5 +1,6 @@
 ---
 import resume from "../data/resume.json";
+import { withBase } from "../lib/base";
 const { basics } = resume;
 
 const appCount = resume.projects.filter((p) => "appId" in p).length;
@@ -71,7 +72,7 @@ const stats = [
 
       <div class="order-first md:order-last">
         <img
-          src={basics.photo}
+          src={withBase(basics.photo)}
           width="220"
           height="220"
           alt=""
