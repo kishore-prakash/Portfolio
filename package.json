@@ -20,7 +20,7 @@
     "pm2:logs": "pm2 logs portfolio"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.6.0",
+    "@astrojs/sitemap": "^3.7.4",
     "@tailwindcss/vite": "^4.1.14",
     "astro": "^7.4.2",
     "sharp": "^0.35.4",
