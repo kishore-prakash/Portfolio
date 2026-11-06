@@ -27,6 +27,37 @@ cannot drift apart.
 
 Deployment steps are in [DEPLOY.md](DEPLOY.md).
 
+## After upgrading Node on the server
+
+The pm2 daemon keeps the Node binary it was started with. After a Node upgrade
+(especially with `nvm`, once the old version is removed), `pm2 restart` cannot
+launch the app: `pm2 status` shows `online` with `pid N/A` and `0b` memory, the
+app logs stay empty, and Cloudflare/Caddy return 502. Apps that were already
+running keep working until their next restart, so one broken site is the early
+warning for all of them.
+
+```bash
+node -v && which node                                     # the new Node
+pm2 describe portfolio | grep -iE 'interpreter|node.js'   # what pm2 is using
+tail -30 ~/.pm2/pm2.log                                   # ENOENT / spawn errors land here
+```
+
+If they disagree, move pm2 onto the new Node and rebuild:
+
+```bash
+pm2 update                       # restarts the daemon (and every app) on the current Node
+npm ci --include=dev             # rebuilds native modules (sharp) for the new ABI; keeps `serve`
+npm run build
+npm run pm2:restart
+pm2 unstartup && pm2 startup     # boot script has the old Node path baked in; run the sudo line it prints
+pm2 save
+curl -I http://localhost:4321/   # expect 200
+```
+
+`package.json` pins `"engines": {"node": "24"}`; Astro 7 needs it. `serve` is a
+devDependency, so `npm ci` with `NODE_ENV=production` set skips it and pm2 has
+nothing to run, hence `--include=dev`.
+
 ## Layout
 
 ```
