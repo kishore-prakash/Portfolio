@@ -20,14 +20,14 @@
     "pm2:logs": "pm2 logs portfolio"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.4",
-    "@tailwindcss/vite": "^4.3.4",
-    "astro": "^7.4.5",
+    "@astrojs/sitemap": "^3.7.5",
+    "@tailwindcss/vite": "^4.3.5",
+    "astro": "^7.4.12",
     "sharp": "^0.35.4",
     "tailwindcss": "^4.3.4"
   },
   "devDependencies": {
-    "serve": "^14.2.6"
+    "serve": "^14.2.8"
   },
   "overrides": {
     "serve": {
